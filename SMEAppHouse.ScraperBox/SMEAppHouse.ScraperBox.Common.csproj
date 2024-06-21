@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netcoreapp2.2;net461</TargetFrameworks>
+    <Description>Library for containing common members for scraper library.</Description>
+    <LangVersion>default</LangVersion>
+  </PropertyGroup>
+
+  <Import Project="..\.shared\common-dep-ass.proj" />
+
+  <ItemGroup>
+    <Compile Remove="Models\UserAgents.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.7" />
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
+    <PackageReference Include="System.Net.NameResolution" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SMEAppHouse.Core.CodeKits\SMEAppHouse.Core.CodeKits.csproj" />
+  </ItemGroup>
+
+</Project>

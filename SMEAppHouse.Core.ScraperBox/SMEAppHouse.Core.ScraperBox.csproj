@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Description>Library for setting app configurations.</Description>
+  </PropertyGroup>
+
+  <Import Project="..\.shared\common-assembly-info.proj" />
+
+  <ItemGroup>
+    <Compile Remove="AppEFAttribute.cs" />
+    <Compile Remove="HttpUtil.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.61" />
+    <PackageReference Include="ScrapySharp" Version="3.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SMEAppHouse.Core.CodeKits\SMEAppHouse.Core.CodeKits.csproj" />
+  </ItemGroup>
+
+</Project>

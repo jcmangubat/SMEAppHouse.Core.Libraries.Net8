@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Description>Library for generating usable proxy IP usable when making http requests anonymously.</Description>
+    <AssemblyName>SMEAppHouse.Core.FreeIPProxy</AssemblyName>
+    <RootNamespace>SMEAppHouse.Core.FreeIPProxy</RootNamespace>
+  </PropertyGroup>
+
+  <Import Project="..\.shared\common-assembly-info.proj" />
+
+  <ItemGroup>
+    <Compile Remove="Helpers\**" />
+    <Compile Remove="Providers\**" />
+    <EmbeddedResource Remove="Helpers\**" />
+    <EmbeddedResource Remove="Providers\**" />
+    <None Remove="Helpers\**" />
+    <None Remove="Providers\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Rules.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Providers\Base\IIPProxyCartridge.cs" />
+    <Compile Include="Providers\Base\IPProxyCartridgeBase.cs" />
+    <Compile Include="Providers\PremProxyComCartridge.cs" />
+    <Compile Include="Providers\ProxyHttpNetCartridge.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SMEAppHouse.Core.CodeKits\SMEAppHouse.Core.CodeKits.csproj" />
+    <ProjectReference Include="..\SMEAppHouse.Core.ProcessService\SMEAppHouse.Core.ProcessService.csproj" />
+    <ProjectReference Include="..\SMEAppHouse.Core.ScraperBox.Selenium\SMEAppHouse.Core.ScraperBox.Selenium.csproj" />
+    <ProjectReference Include="..\SMEAppHouse.Core.ScraperBox\SMEAppHouse.Core.ScraperBox.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
+</Project>

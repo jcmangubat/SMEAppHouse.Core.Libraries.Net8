@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net8.0</TargetFrameworks>
+		<Description>Library for handling Topshelf implemented windows service.</Description>
+	</PropertyGroup>
+
+  <Import Project="..\.shared\common-assembly-info.proj" />
+
+	<ItemGroup>
+		<ProjectReference Include="..\SMEAppHouse.Core.CodeKits\SMEAppHouse.Core.CodeKits.csproj" />
+		<ProjectReference Include="..\SMEAppHouse.Core.TopshelfAdapter.Common\SMEAppHouse.Core.TopshelfAdapter.Common.csproj" />
+	</ItemGroup>
+
+</Project>

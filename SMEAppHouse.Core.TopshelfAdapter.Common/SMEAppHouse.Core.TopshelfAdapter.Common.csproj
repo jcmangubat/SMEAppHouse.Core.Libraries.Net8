@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<Description>Container of common members shared across Topshelf adapter implementation.</Description>
+	</PropertyGroup>
+
+  <Import Project="..\.shared\common-assembly-info.proj" />
+
+	<ItemGroup>
+		<None Remove="NLog.config" />
+		<None Remove="NLog.xsd" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\SMEAppHouse.Core.CodeKits\SMEAppHouse.Core.CodeKits.csproj" />
+	</ItemGroup>
+
+</Project>

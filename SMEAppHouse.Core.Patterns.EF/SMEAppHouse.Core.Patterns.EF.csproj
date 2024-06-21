@@ -1,0 +1,66 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Description>Patterns library for implementing entity structural and adapter pattern.</Description>
+  </PropertyGroup>
+
+  <Import Project="..\.shared\common-assembly-info.proj" />
+
+  <ItemGroup>
+    <Compile Remove="DbContextAbstractions\**" />
+    <Compile Remove="ModelComposites\Abstractions\RefInterfaces\**" />
+    <EmbeddedResource Remove="DbContextAbstractions\**" />
+    <EmbeddedResource Remove="ModelComposites\Abstractions\RefInterfaces\**" />
+    <None Remove="DbContextAbstractions\**" />
+    <None Remove="ModelComposites\Abstractions\RefInterfaces\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="ModelComposites\Base\IEntityGenericArchivable.cs" />
+    <Compile Remove="ModelComposites\Base\IEntityGenericArchivableAuditable.cs" />
+    <Compile Remove="ModelComposites\Base\KeyedEntityBase - Copy - Copy - Copy.cs" />
+    <Compile Remove="ModelComposites\Base\KeyedEntityBase - Copy - Copy.cs" />
+    <Compile Remove="ModelComposites\Base\KeyedEntityBase - Copy.cs" />
+    <Compile Remove="ModelCfgAbstractions\DbEntityCfg.cs" />
+    <Compile Remove="ModelCfgAbstractions\ModelConfigurationBase.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="DbContextAbstractions\AppDbContextExtended.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="8.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Analyzers" Version="8.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.4" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
+    <PackageReference Include="Microsoft.EntityFrameworkCore">
+      <Version>5.0.6</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions">
+      <Version>5.0.6</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory">
+      <Version>5.0.6</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational">
+      <Version>5.0.6</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite">
+      <Version>5.0.6</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer">
+      <Version>5.0.6</Version>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SMEAppHouse.Core.CodeKits\SMEAppHouse.Core.CodeKits.csproj" />
+  </ItemGroup>
+
+</Project>

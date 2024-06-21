@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Description>Library for implementing repostitory pattern strategy with unit of works.</Description>
+  </PropertyGroup>
+
+  <Import Project="..\.shared\common-assembly-info.proj" />
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.0" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<Description>Library of useful reusable functions and procedures extending EF based on patters.</Description>
+	</PropertyGroup>
+
+	<Import Project="..\.shared\common-assembly-info.proj" />
+
+	<ItemGroup>
+		<Compile Remove="DynamicLibrary.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+	</ItemGroup>
+
+</Project>

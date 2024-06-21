@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+		<Description>Library to handle Topshelf implemented queued service modules.</Description>
+	</PropertyGroup>
+
+  <Import Project="..\.shared\common-assembly-info.proj" />
+
+	<ItemGroup>
+	  <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
+	  <PackageReference Include="NodaTime" Version="3.1.11" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\SMEAppHouse.Core.Scheduler\SMEAppHouse.Core.Scheduler.csproj" />
+	  <ProjectReference Include="..\SMEAppHouse.Core.TopshelfAdapter.Common\SMEAppHouse.Core.TopshelfAdapter.Common.csproj" />
+	  <ProjectReference Include="..\SMEAppHouse.Core.TopshelfAdapter\SMEAppHouse.Core.TopshelfAdapter.csproj" />
+	</ItemGroup>
+</Project>
