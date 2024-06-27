@@ -668,4 +668,14 @@ public static class CodeKit
         return input;
     }
 
+    public static string MakeSlug(string title)
+    {
+        var cleanedTitle = title.Trim().Replace(".", "");
+        cleanedTitle = URLSafeString(cleanedTitle);
+        if (!cleanedTitle.Any(p => p == ' ')) // already a slug
+            return cleanedTitle;
+        var titleParts = title.Split(' ').Select(p => p.Trim().ToLower()).ToList();
+        var slug = URLSafeString(string.Join('-', titleParts));
+        return slug;
+    }
 }
