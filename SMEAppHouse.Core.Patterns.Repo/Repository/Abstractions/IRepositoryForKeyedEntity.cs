@@ -28,9 +28,14 @@ namespace SMEAppHouse.Core.Patterns.Repo.Repository.Abstractions
         //                                    , bool noTracking = true
         //                                    , params object[] keyValues);
 
+        Task<TEntity> GetSingleAsync(Expression<Func<TEntity, bool>> filterPredicate);
+
         Task<TEntity> GetSingleAsync(Expression<Func<TEntity, bool>> filterPredicate = null,
             Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> includeExpression = null,
             bool disableTracking = true);
+
+        Task<IEnumerable<TEntity>> GetListAsync(
+            Expression<Func<TEntity, bool>> filter);
 
         Task<IEnumerable<TEntity>> GetListAsync(
             Expression<Func<TEntity, bool>> filter = null,

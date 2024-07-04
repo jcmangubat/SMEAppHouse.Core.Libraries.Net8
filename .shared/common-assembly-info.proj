@@ -9,18 +9,18 @@
 		<Copyright>Copyright © SME App House 2024</Copyright>
 		<Product>Application Components (.Net Core Projects)</Product>
 		<ProductName>SME App House Component Libraries</ProductName>
-		<PackageLicenseUrl>https://www.smeapphouse.ph</PackageLicenseUrl>
-		<PackageProjectUrl>https://www.smeapphouse.ph</PackageProjectUrl>
-		<PackageIconUrl>https://www.smeapphouse.ph/favicon.ico</PackageIconUrl>
-		<RepositoryUrl>https://www.smeapphouse.ph</RepositoryUrl>
+		<PackageLicense>https://www.smedigital.ph</PackageLicense>
+		<PackageProjectUrl>https://www.smedigital.ph</PackageProjectUrl>
+		<PackageIconUrl>https://www.smedigital.ph/favicon.ico</PackageIconUrl>
+		<RepositoryUrl>https://www.smedigital.ph</RepositoryUrl>
 		<RepositoryType>repositoryType</RepositoryType>
 		<PackageReleaseNotes>release notes</PackageReleaseNotes>
 		<PackageTags>.Net Core, SMEAppHouse</PackageTags>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 
-		<Version>2.0.0000.00</Version>
-		<AssemblyVersion>2.0.0000.00</AssemblyVersion>
-		<FileVersion>2.0.0000.00</FileVersion>
+		<Version>8.0.0001.00</Version>
+		<AssemblyVersion>8.0.0001.00</AssemblyVersion>
+		<FileVersion>8.0.0001.00</FileVersion>
 		<LangVersion>Latest</LangVersion>
 	</PropertyGroup>
 

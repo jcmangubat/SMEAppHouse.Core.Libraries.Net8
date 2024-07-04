@@ -46,13 +46,12 @@ namespace SMEAppHouse.Core.Patterns.Repo.Repository.Abstractions
             return await DbContext.Set<TEntity>().Where(predicate).ToListAsync();
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="predicate"></param>
-        /// <param name="include"></param>
-        /// <param name="disableTracking"></param>
-        /// <returns></returns>
+        public async Task<TEntity> GetSingleAsync(Expression<Func<TEntity, bool>> predicate )
+        {
+            IQueryable<TEntity> query = DbSet.Where(predicate);
+            return await query.OrderBy(p => p.Id).FirstOrDefaultAsync();
+        }
+
         public async Task<TEntity> GetSingleAsync(Expression<Func<TEntity, bool>> predicate = null
             , Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null
             , bool disableTracking = true)
@@ -62,6 +61,11 @@ namespace SMEAppHouse.Core.Patterns.Repo.Repository.Abstractions
             if (include != null) query = include(query);
             if (predicate != null) query = query.Where(predicate);
             return await query.OrderBy(p => p.Id).FirstOrDefaultAsync();
+        }
+
+        public async Task<IEnumerable<TEntity>> GetListAsync(Expression<Func<TEntity, bool>> filter)
+        {
+            return await GetListAsync(filter, null, null);
         }
 
         public async Task<IEnumerable<TEntity>> GetListAsync(
@@ -121,7 +125,7 @@ namespace SMEAppHouse.Core.Patterns.Repo.Repository.Abstractions
 
         public async Task DeleteAsync(TEntity entity)
         {
-            var existing = await DbSet.FindAsync(entity);
+            var existing = await DbSet.FindAsync(entity.Id);
             if (existing != null) DbSet.Remove(existing);
         }
 
