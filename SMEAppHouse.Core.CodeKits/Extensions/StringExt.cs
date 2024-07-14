@@ -107,7 +107,7 @@ namespace SMEAppHouse.Core.CodeKits.Extensions
             TextInfo textInfo = CultureInfo.CurrentCulture.TextInfo;
             string[] words = phrase.Split(new char[] { ' ', ',', '.', '-', '_' }, StringSplitOptions.RemoveEmptyEntries);
 
-            for (int i = 1; i < words.Length; i++)
+            for (int i = 0; i < words.Length; i++)
             {
                 words[i] = textInfo.ToTitleCase(words[i].ToLower());
             }
