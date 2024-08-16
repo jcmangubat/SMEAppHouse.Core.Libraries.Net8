@@ -17,11 +17,12 @@
 		<PackageReleaseNotes>release notes</PackageReleaseNotes>
 		<PackageTags>.Net Core, SMEAppHouse</PackageTags>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-
-		<Version>8.0.0001.00</Version>
-		<AssemblyVersion>8.0.0001.00</AssemblyVersion>
-		<FileVersion>8.0.0001.00</FileVersion>
-		<LangVersion>Latest</LangVersion>
+    <LangVersion>Latest</LangVersion>
+    
+		<Version>8.0.2.00</Version>
+		<AssemblyVersion>8.0.2.00</AssemblyVersion>
+		<FileVersion>8.0.2.00</FileVersion>
+		
 	</PropertyGroup>
 
 </Project>
