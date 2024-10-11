@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
-using SMEAppHouse.Core.Patterns.EF.ModelComposites.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using SMEAppHouse.Core.Patterns.EF.EntityCompositing.Interfaces;
 using SMEAppHouse.Core.Patterns.Repo.Repository.Abstractions;
 
 namespace SMEAppHouse.Core.Patterns.Repo.UnitOfWork
@@ -31,7 +29,7 @@ namespace SMEAppHouse.Core.Patterns.Repo.UnitOfWork
         /// </summary>
         /// <typeparam name="TEntity"></typeparam>
         /// <returns></returns>
-        public IRepositoryForKeyedEntity<TEntity, TPk> GetRepository<TEntity>() where TEntity : class, IEntityKeyed<TPk>
+        public IRepositoryForKeyedEntity<TEntity, TPk> GetRepository<TEntity>() where TEntity : class, IKeyedEntity<TPk>
         {
             var type = typeof(TEntity);
 

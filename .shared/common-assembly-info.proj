@@ -15,13 +15,16 @@
 		<RepositoryUrl>https://www.smedigital.ph</RepositoryUrl>
 		<RepositoryType>repositoryType</RepositoryType>
 		<PackageReleaseNotes>release notes</PackageReleaseNotes>
-		<PackageTags>.Net Core, SMEAppHouse</PackageTags>
+		<PackageTags>.Net Core, SMEAppHouse, SMEDigital</PackageTags>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <LangVersion>Latest</LangVersion>
+
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
     
-		<Version>8.0.2.00</Version>
-		<AssemblyVersion>8.0.2.00</AssemblyVersion>
-		<FileVersion>8.0.2.00</FileVersion>
+		<Version>8.0.6.00</Version>
+		<AssemblyVersion>8.0.6.00</AssemblyVersion>
+		<FileVersion>8.0.6.00</FileVersion>
 		
 	</PropertyGroup>
 

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace SMEAppHouse.Core.Patterns.Repo.Paging
+﻿namespace SMEAppHouse.Core.Patterns.Repo.Paging
 {
     public interface IPaginate<T>
     {

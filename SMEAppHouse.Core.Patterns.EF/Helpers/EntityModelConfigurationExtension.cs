@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
+﻿using System.Data;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using SMEAppHouse.Core.Patterns.EF.ModelComposites.Interfaces;
+using SMEAppHouse.Core.Patterns.EF.EntityCompositing.Interfaces;
 
 namespace SMEAppHouse.Core.Patterns.EF.Helpers;
 

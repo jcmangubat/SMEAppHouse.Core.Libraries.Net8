@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace SMEAppHouse.Core.CodeKits.Data
+﻿namespace SMEAppHouse.Core.CodeKits.Data
 {
     public static class CollectionsHelper
     {

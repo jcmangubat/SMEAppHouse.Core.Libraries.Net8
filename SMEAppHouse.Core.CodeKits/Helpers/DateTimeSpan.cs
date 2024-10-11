@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SMEAppHouse.Core.CodeKits.Helpers;
+﻿namespace SMEAppHouse.Core.CodeKits.Helpers;
 
 /// <summary>
 /// https://stackoverflow.com/a/9216404/3796898

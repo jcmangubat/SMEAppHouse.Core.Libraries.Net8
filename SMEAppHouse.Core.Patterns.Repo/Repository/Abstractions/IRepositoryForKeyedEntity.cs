@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Threading.Tasks;
+﻿using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
-using SMEAppHouse.Core.Patterns.EF.ModelComposites.Interfaces;
+using SMEAppHouse.Core.Patterns.EF.EntityCompositing.Interfaces;
 
 namespace SMEAppHouse.Core.Patterns.Repo.Repository.Abstractions
 {
     public interface IRepositoryForKeyedEntity<TEntity, TPk> : IDisposable
-        where TEntity : class, IEntityKeyed<TPk>
+        where TEntity : class, IKeyedEntity<TPk>
         where TPk : struct
     {
         DbContext DbContext { get; set; }
@@ -18,9 +14,11 @@ namespace SMEAppHouse.Core.Patterns.Repo.Repository.Abstractions
 
         IQueryable<TEntity> Query(string sql, params object[] parameters);
 
-        Task<TEntity> FindAsync(params object[] keyValues);
-        Task<TEntity> FindAsync(Expression<Func<TEntity, object>> includeSelector, params object[] keyValues);
+        Task<TEntity?> FindAsync(params object[] keyValues);
+        Task<TEntity?> FindAsync(Expression<Func<TEntity, object>> includeSelector, params object[] keyValues);
         Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>> predicate);
+
+        Task<bool> AnyAsync(Expression<Func<TEntity, bool>> predicate);
 
         //Task<TEntity> Search(CancellationToken cancelToken
         //                                    , params object[] keyValues);
@@ -49,7 +47,7 @@ namespace SMEAppHouse.Core.Patterns.Repo.Repository.Abstractions
 
 
         Task DeleteAsync(TEntity entity);
-        Task DeleteAsync(object id);
+        Task DeleteAsync(TPk id);
         Task DeleteAsync(params TEntity[] entities);
         Task DeleteAsync(IEnumerable<TEntity> entities);
         Task DeleteAsync(Expression<Func<TEntity, bool>> predicate);

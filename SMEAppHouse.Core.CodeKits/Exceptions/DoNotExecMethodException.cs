@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SMEAppHouse.Core.CodeKits.Exceptions
+﻿namespace SMEAppHouse.Core.CodeKits.Exceptions
 {
     /// <summary>
     ///     Exception for Category actions.

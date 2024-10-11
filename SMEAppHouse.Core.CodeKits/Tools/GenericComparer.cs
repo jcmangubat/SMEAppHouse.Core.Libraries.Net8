@@ -12,9 +12,6 @@
 // <summary></summary>
 // ***********************************************************************
 
-using System;
-using System.Collections.Generic;
-
 namespace SMEAppHouse.Core.CodeKits.Tools
 {
     public class GenericComparer<T> : IEqualityComparer<T> where T : class

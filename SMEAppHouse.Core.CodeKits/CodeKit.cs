@@ -1,9 +1,6 @@
-﻿using System;
+﻿using System.Collections;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Numerics;
@@ -12,8 +9,6 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
-using System.Threading;
-using System.Threading.Tasks;
 using SMEAppHouse.Core.CodeKits.Extensions;
 using SMEAppHouse.Core.CodeKits.Helpers.Expressions;
 using Timer = System.Timers.Timer;
@@ -24,31 +19,58 @@ public static class CodeKit
 {
     private delegate bool DirectoryExistsDelegate(string folder);
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="type"></param>
-    /// <returns></returns>
     public static bool IsNumericType(Type type)
     {
-        switch (Type.GetTypeCode(type))
+        // Check if the type is a known non-numeric type
+        if (type == typeof(string) || type == typeof(bool) || type == typeof(DateTime) ||
+            type == typeof(char) || type == typeof(object))
+            return false;
+        
+        // Check for enum types
+        if (type.IsEnum)
+            return false;
+
+        // Check for arrays
+        if (type.IsArray)
+            return false;
+
+        // Check for collections (IEnumerable)
+        if (typeof(IEnumerable).IsAssignableFrom(type) && type != typeof(string))
+            return false;
+
+        // If the type is a generic type, check if it's a collection type
+        if (type.IsGenericType)
         {
-            case TypeCode.Byte:
-            case TypeCode.SByte:
-            case TypeCode.UInt16:
-            case TypeCode.UInt32:
-            case TypeCode.UInt64:
-            case TypeCode.Int16:
-            case TypeCode.Int32:
-            case TypeCode.Int64:
-            case TypeCode.Decimal:
-            case TypeCode.Double:
-            case TypeCode.Single:
-                return true;
-            default:
+            var genericTypeDefinition = type.GetGenericTypeDefinition();
+            if (genericTypeDefinition == typeof(List<>) ||
+                genericTypeDefinition == typeof(Dictionary<,>) ||
+                genericTypeDefinition == typeof(HashSet<>) ||
+                genericTypeDefinition == typeof(Queue<>) ||
+                genericTypeDefinition == typeof(Stack<>))
                 return false;
         }
+
+        // Check for nullable types
+        if (Nullable.GetUnderlyingType(type) != null)
+            type = Nullable.GetUnderlyingType(type);
+
+        // Check for numeric types
+        bool isNumeric = type == typeof(byte) ||
+                         type == typeof(sbyte) ||
+                         type == typeof(short) ||
+                         type == typeof(ushort) ||
+                         type == typeof(int) ||
+                         type == typeof(uint) ||
+                         type == typeof(long) ||
+                         type == typeof(ulong) ||
+                         type == typeof(float) ||
+                         type == typeof(double) ||
+                         type == typeof(decimal);
+
+        // Optionally check for IConvertible if you want to include custom numeric types
+        return isNumeric || typeof(IConvertible).IsAssignableFrom(type);
     }
+
 
     public static string HashPassword(string password)
     {

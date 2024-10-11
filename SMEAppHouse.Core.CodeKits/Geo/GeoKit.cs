@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace SMEAppHouse.Core.CodeKits.Geo;
+﻿namespace SMEAppHouse.Core.CodeKits.Geo;
 
 public sealed class GeoKit
 {

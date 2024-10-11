@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SMEAppHouse.Core.CodeKits.Helpers
+﻿namespace SMEAppHouse.Core.CodeKits.Helpers
 {
     public static class EventHandlerHelper
     {

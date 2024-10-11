@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SMEAppHouse.Core.CodeKits.Extensions
+﻿namespace SMEAppHouse.Core.CodeKits.Extensions
 {
     class Person
     {

@@ -12,11 +12,6 @@
 // <summary></summary>
 // ***********************************************************************
 
-using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-
 namespace SMEAppHouse.Core.CodeKits.Tools
 {
     // Provides a task scheduler that ensures a maximum concurrency level while  

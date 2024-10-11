@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SMEAppHouse.Core.CodeKits.Helpers
+﻿namespace SMEAppHouse.Core.CodeKits.Helpers
 {
     /// <summary>
     /// Credits to: https://stackoverflow.com/a/529852/3796898

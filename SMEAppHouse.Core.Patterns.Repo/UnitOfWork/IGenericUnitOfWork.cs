@@ -1,6 +1,5 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using SMEAppHouse.Core.Patterns.EF.ModelComposites.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using SMEAppHouse.Core.Patterns.EF.EntityCompositing.Interfaces;
 using SMEAppHouse.Core.Patterns.Repo.Repository.Abstractions;
 
 namespace SMEAppHouse.Core.Patterns.Repo.UnitOfWork
@@ -9,7 +8,7 @@ namespace SMEAppHouse.Core.Patterns.Repo.UnitOfWork
         where TPk : struct
     {
         IRepositoryForKeyedEntity<TEntity, TPk> GetRepository<TEntity>()
-            where TEntity : class, IEntityKeyed<TPk>;
+            where TEntity : class, IKeyedEntity<TPk>;
 
         int SaveChanges();
     }

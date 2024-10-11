@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
+﻿using System.Data;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using SMEAppHouse.Core.Patterns.EF.ModelComposites.Interfaces;
+using SMEAppHouse.Core.Patterns.EF.EntityCompositing.Interfaces;
 
 namespace SMEAppHouse.Core.Patterns.EF.Helpers;
 
@@ -53,7 +50,7 @@ public static class DataAccessOperationsExtensions
     /// <param name="entity"></param>
     /// <param name="entryId"></param>
     public static void DetachLocal<TEntity, TPk>(this DbContext context, TEntity entity, string entryId)
-        where TEntity : class, IEntityKeyed<TPk>
+        where TEntity : class, IKeyedEntity<TPk>
         where TPk : struct
     {
         var local = context.Set<TEntity>()

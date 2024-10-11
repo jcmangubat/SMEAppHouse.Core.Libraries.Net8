@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
 namespace SMEAppHouse.Core.CodeKits.Helpers.Expressions
 {
     public class PropertyVariance
