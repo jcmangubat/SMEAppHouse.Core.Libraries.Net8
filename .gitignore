@@ -7,8 +7,12 @@
 /SMEAppHouse.Core.GHClientLib/.vs/SMEQA.GHClientLib
 /SMEAppHouse.Core.Patterns.EF/.vs/SMEAppHouse.Core.Patterns.EF
 /SMEAppHouse.Core.WebAPIPatterns/.vs/SMEAppHouse.Core.WebAPI.Patterns
-/GPSLibs.netStd_nuget_api_key.txt
 /nu_dep.bat
+/nu_dep-version-8.bat
+/nu_dep-version-9.bat
+/GPSLibs.netStd_2_nuget.bat
+/GPSLibs.netStd_nuget_api_key.txt
+/GPSLibs.netStd_nuget_api_key_OLD.txt
 /SMEAppHouse.Core.AppMgt/bin/Debug
 /SMEAppHouse.Core.AppMgt/obj/Debug
 /SMEAppHouse.Core.AppMgt/obj
@@ -100,7 +104,6 @@
 /SMEAppHouse.ScraperBox.Puppeteer.TestApp/obj
 /SMEAppHouse.ScraperBox.Selenium/bin/Debug
 /SMEAppHouse.ScraperBox.Selenium/obj
-/nu_dep-version-8.bat
 /SMEAppHouse.Core.EnvCfgLoader/bin
 /SMEAppHouse.Core.EnvCfgLoader/obj
-/nu_dep-version-9.bat
+
