@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SMEAppHouse.Core.ProcessService.Exceptions
+﻿namespace SMEAppHouse.Core.ProcessService.Exceptions
 {
     /// <summary>
     ///     Exception for Category actions.

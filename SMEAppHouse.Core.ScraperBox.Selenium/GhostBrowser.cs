@@ -1,43 +1,101 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using OpenQA.Selenium;
-using OpenQA.Selenium.PhantomJS;
+﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 using SMEAppHouse.Core.ScraperBox.Models;
-#pragma warning disable 618
 
 namespace SMEAppHouse.Core.ScraperBox.Selenium
 {
+    /// <summary>
+    /// Headless browser wrapper using ChromeDriver for web scraping operations.
+    /// </summary>
     public class GhostBrowser : IDisposable
     {
         public IWebDriver WebDriver { get; set; }
 
-        public GhostBrowser()
+        /// <summary>
+        /// Initializes a new instance of GhostBrowser with ChromeDriver in headless mode.
+        /// </summary>
+        /// <param name="proxy">Optional proxy configuration for the browser</param>
+        public GhostBrowser(IPProxy? proxy = null)
         {
-            var service = PhantomJSDriverService.CreateDefaultService(".\\");
-            service.HideCommandPromptWindow = true;
-
-            this.WebDriver = new PhantomJSDriver(service);
+            var chromeOptions = new ChromeOptions();
+            chromeOptions.AddArgument("--headless");
+            chromeOptions.AddArgument("--disable-gpu");
+            chromeOptions.AddArgument("--no-sandbox");
+            chromeOptions.AddArgument("--disable-dev-shm-usage");
+            
+            if (proxy != null)
+            {
+                var proxyObj = new Proxy 
+                { 
+                    HttpProxy = $"{proxy.IPAddress}:{proxy.PortNo}",
+                    SslProxy = $"{proxy.IPAddress}:{proxy.PortNo}"
+                };
+                chromeOptions.Proxy = proxyObj;
+            }
+            
+            this.WebDriver = new ChromeDriver(chromeOptions);
         }
 
+        /// <summary>
+        /// Updates the proxy configuration for the browser.
+        /// Note: ChromeDriver requires proxy to be set during initialization.
+        /// This method will recreate the driver with the new proxy settings.
+        /// </summary>
+        /// <param name="proxy">The proxy configuration to use</param>
         public void UpdateProxy(IPProxy proxy)
         {
-            if (proxy == null) return;
-            var script = $"return phantom.setProxy(\"{proxy.IPAddress}\", {proxy.PortNo}, \"http\", \"\", \"";
-            _ = (this.WebDriver as PhantomJSDriver)?.ExecutePhantomJS(script);
+            // Dispose existing driver
+            if (this.WebDriver != null)
+            {
+                try
+                {
+                    this.WebDriver.Quit();
+                    this.WebDriver.Dispose();
+                }
+                catch
+                {
+                    // Ignore disposal errors
+                }
+            }
+
+            // Create new driver with updated proxy
+            var chromeOptions = new ChromeOptions();
+            chromeOptions.AddArgument("--headless");
+            chromeOptions.AddArgument("--disable-gpu");
+            chromeOptions.AddArgument("--no-sandbox");
+            chromeOptions.AddArgument("--disable-dev-shm-usage");
+            
+            if (proxy != null)
+            {
+                var proxyObj = new Proxy 
+                { 
+                    HttpProxy = $"{proxy.IPAddress}:{proxy.PortNo}",
+                    SslProxy = $"{proxy.IPAddress}:{proxy.PortNo}"
+                };
+                chromeOptions.Proxy = proxyObj;
+            }
+            
+            this.WebDriver = new ChromeDriver(chromeOptions);
         }
 
         public void Dispose()
         {
-            Task.Delay(1000).ContinueWith(t =>
+            if (this.WebDriver != null)
             {
-                Thread.Sleep(1000);
-                this.WebDriver.Quit();
-                this.WebDriver.Dispose();
-            });
+                try
+                {
+                    Task.Delay(1000).ContinueWith(t =>
+                    {
+                        Thread.Sleep(1000);
+                        this.WebDriver.Quit();
+                        this.WebDriver.Dispose();
+                    });
+                }
+                catch
+                {
+                    // Ignore disposal errors
+                }
+            }
         }
     }
 }

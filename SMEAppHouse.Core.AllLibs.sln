@@ -3,11 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Shared", ".Shared", "{61B0891A-1418-4727-8322-285357776AE9}"
-	ProjectSection(SolutionItems) = preProject
-		.shared\common-assembly-info.proj = .shared\common-assembly-info.proj
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SMEAppHouse.Core.AppMgt", "SMEAppHouse.Core.AppMgt\SMEAppHouse.Core.AppMgt.csproj", "{3B6D5A8B-6362-4D18-9A4D-5098CC372271}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SMEAppHouse.Core.CodeKits", "SMEAppHouse.Core.CodeKits\SMEAppHouse.Core.CodeKits.csproj", "{B26333D6-CC63-4351-8E4E-63A11D2F9C84}"
@@ -54,9 +49,47 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SMEAppHouse.Core.Patterns.R
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SMEAppHouse.Core.FreeIPProxy", "SMEAppHouse.Core.FreeProxyProvider\SMEAppHouse.Core.FreeIPProxy.csproj", "{33E707B5-B080-40A6-A673-41D910B1FCAB}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "problematics", "problematics", "{32FDF7EA-FF0A-4C46-AC95-15D3129B08DE}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{1676F2F4-157E-4890-A4DF-6362BDBF678A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "good", "good", "{1676F2F4-157E-4890-A4DF-6362BDBF678A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentations", "Documentations", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+	ProjectSection(SolutionItems) = preProject
+		.documentations\DOCUMENTATION_INDEX.md = .documentations\DOCUMENTATION_INDEX.md
+		.documentations\SMEAppHouse.Core.AppMgt.README.md = .documentations\SMEAppHouse.Core.AppMgt.README.md
+		.documentations\SMEAppHouse.Core.CodeKits.README.md = .documentations\SMEAppHouse.Core.CodeKits.README.md
+		.documentations\SMEAppHouse.Core.Patterns.EF_README.md = .documentations\SMEAppHouse.Core.Patterns.EF_README.md
+		.documentations\SMEAppHouse.Core.Patterns.Repo.V2_README.md = .documentations\SMEAppHouse.Core.Patterns.Repo.V2_README.md
+		.documentations\SMEAppHouse.Core.Patterns.Repo_README.md = .documentations\SMEAppHouse.Core.Patterns.Repo_README.md
+		.documentations\SMEAppHouse.Core.Patterns.WebApi_README.md = .documentations\SMEAppHouse.Core.Patterns.WebApi_README.md
+		.documentations\SMEAppHouse.Core.ProcessService_README.md = .documentations\SMEAppHouse.Core.ProcessService_README.md
+		.documentations\SMEAppHouse.Core.QuartzExt_README.md = .documentations\SMEAppHouse.Core.QuartzExt_README.md
+		.documentations\SMEAppHouse.Core.Reflections_README.md = .documentations\SMEAppHouse.Core.Reflections_README.md
+		.documentations\SMEAppHouse.Core.RestSharpClientLib.README.md = .documentations\SMEAppHouse.Core.RestSharpClientLib.README.md
+		.documentations\SMEAppHouse.Core.Scheduler_README.md = .documentations\SMEAppHouse.Core.Scheduler_README.md
+		.documentations\SMEAppHouse.Core.ScraperBox_README.md = .documentations\SMEAppHouse.Core.ScraperBox_README.md
+		.documentations\SMEAppHouse.Core.SeleniumExt_README.md = .documentations\SMEAppHouse.Core.SeleniumExt_README.md
+		.documentations\SMEAppHouse.Core.TopshelfAdapter.Aggregation_README.md = .documentations\SMEAppHouse.Core.TopshelfAdapter.Aggregation_README.md
+		.documentations\SMEAppHouse.Core.TopshelfAdapter.Common_README.md = .documentations\SMEAppHouse.Core.TopshelfAdapter.Common_README.md
+		.documentations\SMEAppHouse.Core.TopshelfAdapter_README.md = .documentations\SMEAppHouse.Core.TopshelfAdapter_README.md
+		.documentations\Solution_Analysis.md = .documentations\Solution_Analysis.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThreeNine.Data", "3rd_Parties\Threenine.Data\ThreeNine.Data.csproj", "{10D291BE-7DA4-FC8B-6CDB-5898FC1BEBBC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{A467A0B5-3E1F-4CC3-BF1D-C923F7FE7AF9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMEAppHouse.Core.Patterns.EF.Tests", ".Tests\SMEAppHouse.Core.Patterns.EF.Tests\SMEAppHouse.Core.Patterns.EF.Tests.csproj", "{AD0025E4-E0AA-5CAA-03FD-DD5FC7072CD7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Solution Items", ".Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
+	ProjectSection(SolutionItems) = preProject
+		.shared\common-assembly-info.proj = .shared\common-assembly-info.proj
+		LICENSE.txt = LICENSE.txt
+		Nephiora.ico = Nephiora.ico
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMEAppHouse.Core.EnvCfgLoader", "SMEAppHouse.Core.EnvCfgLoader\SMEAppHouse.Core.EnvCfgLoader.csproj", "{9C0A4AD2-7805-3F61-CE52-2B18AFED4411}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMEAppHouse.Core.ISOResource", "SMEAppHouse.Core.ISOResource\SMEAppHouse.Core.ISOResource.csproj", "{C5AB7074-D16A-85AC-732F-605E4CC0D347}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -156,34 +189,54 @@ Global
 		{33E707B5-B080-40A6-A673-41D910B1FCAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33E707B5-B080-40A6-A673-41D910B1FCAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33E707B5-B080-40A6-A673-41D910B1FCAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10D291BE-7DA4-FC8B-6CDB-5898FC1BEBBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10D291BE-7DA4-FC8B-6CDB-5898FC1BEBBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10D291BE-7DA4-FC8B-6CDB-5898FC1BEBBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10D291BE-7DA4-FC8B-6CDB-5898FC1BEBBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD0025E4-E0AA-5CAA-03FD-DD5FC7072CD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD0025E4-E0AA-5CAA-03FD-DD5FC7072CD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD0025E4-E0AA-5CAA-03FD-DD5FC7072CD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD0025E4-E0AA-5CAA-03FD-DD5FC7072CD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C0A4AD2-7805-3F61-CE52-2B18AFED4411}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C0A4AD2-7805-3F61-CE52-2B18AFED4411}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C0A4AD2-7805-3F61-CE52-2B18AFED4411}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C0A4AD2-7805-3F61-CE52-2B18AFED4411}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5AB7074-D16A-85AC-732F-605E4CC0D347}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5AB7074-D16A-85AC-732F-605E4CC0D347}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5AB7074-D16A-85AC-732F-605E4CC0D347}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5AB7074-D16A-85AC-732F-605E4CC0D347}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{3B6D5A8B-6362-4D18-9A4D-5098CC372271} = {32FDF7EA-FF0A-4C46-AC95-15D3129B08DE}
+		{3B6D5A8B-6362-4D18-9A4D-5098CC372271} = {1676F2F4-157E-4890-A4DF-6362BDBF678A}
 		{B26333D6-CC63-4351-8E4E-63A11D2F9C84} = {1676F2F4-157E-4890-A4DF-6362BDBF678A}
-		{5C1AFC58-52E4-4D60-BA10-61F5AA61832C} = {32FDF7EA-FF0A-4C46-AC95-15D3129B08DE}
+		{5C1AFC58-52E4-4D60-BA10-61F5AA61832C} = {1676F2F4-157E-4890-A4DF-6362BDBF678A}
 		{BA8F652E-9FE1-4981-9D33-C9F835C0A454} = {1676F2F4-157E-4890-A4DF-6362BDBF678A}
 		{A0D4F63A-16F5-4D57-BE3E-C5BD543A5783} = {1676F2F4-157E-4890-A4DF-6362BDBF678A}
 		{3F370064-6609-414B-B1A5-5AF48D690EFD} = {1676F2F4-157E-4890-A4DF-6362BDBF678A}
 		{6F241344-A5ED-4E79-B590-3E0212E77E31} = {1676F2F4-157E-4890-A4DF-6362BDBF678A}
-		{075879E7-1A5B-4F9A-8FF1-85E4C9247948} = {32FDF7EA-FF0A-4C46-AC95-15D3129B08DE}
+		{075879E7-1A5B-4F9A-8FF1-85E4C9247948} = {1676F2F4-157E-4890-A4DF-6362BDBF678A}
 		{EA367FCC-C576-4811-A075-D375AEB5DED2} = {1676F2F4-157E-4890-A4DF-6362BDBF678A}
 		{B297E679-2CB3-4ABE-BCFE-0E523D0DF9D6} = {1676F2F4-157E-4890-A4DF-6362BDBF678A}
 		{5ED857ED-FB66-4B5B-AB5B-339F034FE57C} = {1676F2F4-157E-4890-A4DF-6362BDBF678A}
 		{32C400F7-DA17-4264-A3A7-E00FDEC2D71F} = {1676F2F4-157E-4890-A4DF-6362BDBF678A}
 		{3EE6AB6A-9A05-4690-AE7B-82BD1603C86F} = {1676F2F4-157E-4890-A4DF-6362BDBF678A}
-		{C7A4DA09-3B86-440D-A5ED-04AFBC937492} = {32FDF7EA-FF0A-4C46-AC95-15D3129B08DE}
+		{C7A4DA09-3B86-440D-A5ED-04AFBC937492} = {1676F2F4-157E-4890-A4DF-6362BDBF678A}
 		{2795B204-BDD9-445F-BDE1-271D0F60E333} = {1676F2F4-157E-4890-A4DF-6362BDBF678A}
 		{2399F7E6-192E-4839-A5E4-82FAC893AEBA} = {1676F2F4-157E-4890-A4DF-6362BDBF678A}
 		{539A34F5-02E7-4A1B-B771-A22326F8D4F2} = {1676F2F4-157E-4890-A4DF-6362BDBF678A}
 		{E4263402-D0C1-4BC5-AAD4-36AEA0506807} = {1676F2F4-157E-4890-A4DF-6362BDBF678A}
-		{1A810639-68B1-419A-946F-1537C11D4A57} = {32FDF7EA-FF0A-4C46-AC95-15D3129B08DE}
-		{1B2BBE5A-79B4-4CE0-9AD9-883073A86A8E} = {32FDF7EA-FF0A-4C46-AC95-15D3129B08DE}
-		{732D0D91-0066-4D73-ACB6-2F56523B6B5A} = {32FDF7EA-FF0A-4C46-AC95-15D3129B08DE}
+		{1A810639-68B1-419A-946F-1537C11D4A57} = {1676F2F4-157E-4890-A4DF-6362BDBF678A}
+		{1B2BBE5A-79B4-4CE0-9AD9-883073A86A8E} = {1676F2F4-157E-4890-A4DF-6362BDBF678A}
+		{732D0D91-0066-4D73-ACB6-2F56523B6B5A} = {1676F2F4-157E-4890-A4DF-6362BDBF678A}
 		{04E3B2BB-8629-4B24-A57A-65A237B7D929} = {1676F2F4-157E-4890-A4DF-6362BDBF678A}
-		{33E707B5-B080-40A6-A673-41D910B1FCAB} = {32FDF7EA-FF0A-4C46-AC95-15D3129B08DE}
+		{33E707B5-B080-40A6-A673-41D910B1FCAB} = {1676F2F4-157E-4890-A4DF-6362BDBF678A}
+		{10D291BE-7DA4-FC8B-6CDB-5898FC1BEBBC} = {1676F2F4-157E-4890-A4DF-6362BDBF678A}
+		{AD0025E4-E0AA-5CAA-03FD-DD5FC7072CD7} = {A467A0B5-3E1F-4CC3-BF1D-C923F7FE7AF9}
+		{9C0A4AD2-7805-3F61-CE52-2B18AFED4411} = {1676F2F4-157E-4890-A4DF-6362BDBF678A}
+		{C5AB7074-D16A-85AC-732F-605E4CC0D347} = {1676F2F4-157E-4890-A4DF-6362BDBF678A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0A4AD78F-AA97-428F-8525-E3B4EDC4CC1D}

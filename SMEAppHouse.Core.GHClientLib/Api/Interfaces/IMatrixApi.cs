@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using SMEAppHouse.Core.GHClientLib.Model;
 using SMEAppHouse.Core.RestSharpClientLib;
 

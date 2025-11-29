@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-
-namespace SMEAppHouse.Core.ProcessService.Engines
+﻿namespace SMEAppHouse.Core.ProcessService.Engines
 {
     public abstract class ProcessAgentViaTask : ProcessAgentBase
     {

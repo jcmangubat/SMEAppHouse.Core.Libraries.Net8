@@ -1,56 +1,39 @@
-﻿using OpenQA.Selenium.PhantomJS;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
 using OpenQA.Selenium;
-
-#pragma warning disable 618
+using OpenQA.Selenium.Chrome;
 
 namespace SMEAppHouse.Core.ScraperBox.Selenium
 {
     public static class Helper
     {
         /// <summary>
-        /// REFERENCES:
-        /// other approach: 
-        /// 
-        ///     http://stackoverflow.com/questions/18921099/add-proxy-to-phantomjsdriver-selenium-c
-        ///         PhantomJSOptions phoptions = new PhantomJSOptions();
-        ///         phoptions.AddAdditionalCapability(CapabilityType.Proxy, "http://localhost:9999");
-        ///         
-        ///     driver = new PhantomJSDriver(phoptions);
-        ///     - (24/04/2019) https://stackoverflow.com/a/52446115/3796898
-        ///     
+        /// Grabs the page content from the specified URL using ChromeDriver in headless mode.
         /// </summary>
-        /// <param name="targetPgUrl"></param>
-        /// <param name="proxy"></param>
-        /// <returns></returns>
-        public static string GrabPage(string targetPgUrl, Tuple<string, string> proxy = null)
+        /// <param name="targetPgUrl">The target page URL to load</param>
+        /// <param name="proxy">Optional proxy tuple (host, port) for the request</param>
+        /// <returns>The page source content as a string</returns>
+        public static string GrabPage(string targetPgUrl, Tuple<string, string>? proxy = null)
         {
-            //var options = new ChromeOptions();
-            //var userAgent = "user_agent_string";
-            //options.AddArgument("--user-agent=" + userAgent);
-            //IWebDriver driver = new ChromeDriver(options);
-
-            IWebDriver driver = null;
-            Exception exception = null;
+            IWebDriver? driver = null;
+            Exception? exception = null;
             var content = string.Empty;
 
             try
             {
-                var service = PhantomJSDriverService.CreateDefaultService(".\\");
-                service.HideCommandPromptWindow = true;
-
+                var chromeOptions = new ChromeOptions();
+                chromeOptions.AddArgument("--headless");
+                chromeOptions.AddArgument("--disable-gpu");
+                chromeOptions.AddArgument("--no-sandbox");
+                chromeOptions.AddArgument("--disable-dev-shm-usage");
+                
                 if (proxy != null)
-                    service.Proxy = $"{proxy.Item1}:{proxy.Item2}";
-
-                driver = new PhantomJSDriver(service)
                 {
-                    Url = targetPgUrl
-                };
-
-                content = GrabPage((PhantomJSDriver)driver, targetPgUrl, proxy);
-
+                    var proxyObj = new Proxy { HttpProxy = $"{proxy.Item1}:{proxy.Item2}" };
+                    chromeOptions.Proxy = proxyObj;
+                }
+                
+                driver = new ChromeDriver(chromeOptions);
+                driver.Navigate().GoToUrl(targetPgUrl);
+                content = driver.PageSource;
                 return content;
             }
             catch (Exception ex)
@@ -76,19 +59,23 @@ namespace SMEAppHouse.Core.ScraperBox.Selenium
             return content;
         }
 
-        public static string GrabPage(PhantomJSDriver driver, string targetPgUrl, Tuple<string, string> proxy = null)
+        /// <summary>
+        /// Grabs the page content using an existing WebDriver instance.
+        /// </summary>
+        /// <param name="driver">The WebDriver instance to use</param>
+        /// <param name="targetPgUrl">The target page URL to load</param>
+        /// <param name="proxy">Optional proxy tuple (host, port) - Note: Proxy must be configured when creating the driver</param>
+        /// <returns>The page source content as a string</returns>
+        public static string? GrabPage(IWebDriver driver, string targetPgUrl, Tuple<string, string>? proxy = null)
         {
             if (driver == null)
                 throw new InvalidOperationException("driver was not supplied");
 
-            if (proxy != null)
-            {
-                var script = $"return phantom.setProxy(\"{proxy.Item1}\", {proxy.Item2}, \"http\", \"\", \"";
-                var obj = driver?.ExecutePhantomJS(script);
-            }
+            // Note: Proxy configuration should be done when creating the ChromeDriver instance
+            // This method accepts a proxy parameter for API compatibility but doesn't apply it here
+            // as proxy settings need to be set via ChromeOptions when creating the driver
 
-            driver.Url = targetPgUrl;
-            driver.Navigate();
+            driver.Navigate().GoToUrl(targetPgUrl);
             return driver?.PageSource;
         }
 

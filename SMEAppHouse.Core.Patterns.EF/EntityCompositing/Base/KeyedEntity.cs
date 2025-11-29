@@ -13,6 +13,11 @@ namespace SMEAppHouse.Core.Patterns.EF.EntityCompositing.Base;
 public class KeyedEntity<TPk> : IKeyedEntity<TPk>
     where TPk : struct
 {
+    // Column order constants for database schema ordering
+    private const int ColumnOrderPrimaryKey = 0;
+    private const int ColumnOrderDateCreated = 501;
+    private const int ColumnOrderIsActive = 506;
+    private const int ColumnOrderDateModified = 508;
     private TPk _id = default;
     private bool? _IsActive = true;
     private DateTime _dateCreated = DateTime.UtcNow;
@@ -24,7 +29,7 @@ public class KeyedEntity<TPk> : IKeyedEntity<TPk>
     [Required]
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    [Column(Order = 0)]
+    [Column(Order = ColumnOrderPrimaryKey)]
     public TPk Id
     {
         get => _id;
@@ -39,7 +44,7 @@ public class KeyedEntity<TPk> : IKeyedEntity<TPk>
     /// Used to indicate the model is active and can be used by the service operations.
     /// </summary>
     [DatabaseGenerated(DatabaseGeneratedOption.None)]
-    [Column(Order = 506)]
+    [Column(Order = ColumnOrderIsActive)]
     public bool? IsActive
     {
         get => _IsActive;
@@ -77,7 +82,7 @@ public class KeyedEntity<TPk> : IKeyedEntity<TPk>
     /// </summary>
     //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
     //[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy hh:mm tt}", ApplyFormatInEditMode = true)]
-    [Column(Order = 501, TypeName = "DateTime2")]
+    [Column(Order = ColumnOrderDateCreated, TypeName = "DateTime2")]
     [Required]
     [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
     public DateTime DateCreated
@@ -94,7 +99,7 @@ public class KeyedEntity<TPk> : IKeyedEntity<TPk>
     }
 
     [DatabaseGenerated(DatabaseGeneratedOption.None)]
-    [Column(Order = 508, TypeName = "DateTime2")]
+    [Column(Order = ColumnOrderDateModified, TypeName = "DateTime2")]
     public DateTime? DateModified
     {
         get
@@ -122,7 +127,9 @@ public class KeyedEntity<TPk> : IKeyedEntity<TPk>
     public static IEnumerable<Type> GetImplementors()
     {
         var type = typeof(IKeyedEntity<TPk>);
-        var types = AppDomain.CurrentDomain.GetAssemblies().ToList().SelectMany(s => s.GetTypes())
+        // Use lazy evaluation - avoid loading all assemblies into memory at once
+        var types = AppDomain.CurrentDomain.GetAssemblies()
+            .SelectMany(s => s.GetTypes())
             .Where(p => type.IsAssignableFrom(p));
         return types;
     }

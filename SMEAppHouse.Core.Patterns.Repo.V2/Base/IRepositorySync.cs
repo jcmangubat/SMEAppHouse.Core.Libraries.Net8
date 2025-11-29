@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
+using SMEAppHouse.Core.Patterns.EF.EntityCompositing.Interfaces;
 
 namespace SMEAppHouse.Core.Patterns.Repo.V2.Base
 {
@@ -12,7 +10,8 @@ namespace SMEAppHouse.Core.Patterns.Repo.V2.Base
     /// <typeparam name="TEntity"></typeparam>
     /// <typeparam name="TPk"></typeparam>
     public interface IRepositorySync<TEntity, in TPk>
-        where TEntity : class, IIdentifiableEntity<TPk>
+        where TPk : struct
+        where TEntity : class, IKeyedEntity<TPk>
     {
         DbContext Context { get; set; }
         DbSet<TEntity> DbSet { get; set; }

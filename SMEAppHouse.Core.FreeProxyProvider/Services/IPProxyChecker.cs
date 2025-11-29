@@ -1,9 +1,5 @@
 ﻿using SMEAppHouse.Core.CodeKits.Data;
 using SMEAppHouse.Core.ProcessService.Engines;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using SMEAppHouse.Core.ScraperBox.Models;
 using static SMEAppHouse.Core.FreeIPProxy.Handlers.EventHandlers;
 

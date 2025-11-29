@@ -16,12 +16,9 @@
 
 // ReSharper disable InheritdocConsiderUsage
 
-using System.Net.Http;
-using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using SMEAppHouse.Core.Patterns.EF.ModelComposites.Interfaces;
+using SMEAppHouse.Core.Patterns.EF.EntityCompositing.Interfaces;
 
 namespace SMEAppHouse.Core.Patterns.WebApi.APIHostPattern
 {

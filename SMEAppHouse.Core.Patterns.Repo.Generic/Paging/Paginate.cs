@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace SMEAppHouse.Core.Patterns.Repo.Generic.Paging
+﻿namespace SMEAppHouse.Core.Patterns.Repo.Generic.Paging
 {
     public class Paginate<T> : IPaginate<T>
     {

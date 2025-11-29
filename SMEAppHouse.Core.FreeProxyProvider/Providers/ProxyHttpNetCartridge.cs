@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using HtmlAgilityPack;
+﻿using HtmlAgilityPack;
 using SMEAppHouse.Core.FreeIPProxy.Providers.Base;
 using SMEAppHouse.Core.ScraperBox;
 using SMEAppHouse.Core.ScraperBox.Models;

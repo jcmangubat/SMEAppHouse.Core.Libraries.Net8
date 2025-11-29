@@ -9,21 +9,17 @@
 
   <ItemGroup>
     <Compile Remove="DependencyInjection\**" />
+    <Compile Remove="Models\**" />
     <Compile Remove="old\**" />
-    <Compile Remove="UnitOfWork\LongPKBasedVariation\**" />
-    <Compile Remove="UnitOfWork\old\**" />
+    <Compile Remove="UnitOfWork\**" />
     <EmbeddedResource Remove="DependencyInjection\**" />
+    <EmbeddedResource Remove="Models\**" />
     <EmbeddedResource Remove="old\**" />
-    <EmbeddedResource Remove="UnitOfWork\LongPKBasedVariation\**" />
-    <EmbeddedResource Remove="UnitOfWork\old\**" />
+    <EmbeddedResource Remove="UnitOfWork\**" />
     <None Remove="DependencyInjection\**" />
+    <None Remove="Models\**" />
     <None Remove="old\**" />
-    <None Remove="UnitOfWork\LongPKBasedVariation\**" />
-    <None Remove="UnitOfWork\old\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Remove="UnitOfWork\MockUnitOfWork.cs" />
+    <None Remove="UnitOfWork\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,9 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="System.Data.SqlClient">
-      <HintPath>C:\Users\jcman\.nuget\packages\system.data.sqlclient\4.4.0\ref\netstandard2.0\System.Data.SqlClient.dll</HintPath>
-    </Reference>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
   </ItemGroup>
 
 </Project>

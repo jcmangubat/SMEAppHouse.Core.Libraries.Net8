@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SMEAppHouse.Core.AppMgt.AuthMgr.Models
+﻿namespace SMEAppHouse.Core.AppMgt.AuthMgr.Models
 {
     public class UserGrant
     {

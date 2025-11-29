@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading;
-
-namespace SMEAppHouse.Core.ProcessService.Specials
+﻿namespace SMEAppHouse.Core.ProcessService.Specials
 {
     /// <summary>Event arguments representing the completion of a parallel action.</summary>
     public class ParallelEventArgs : EventArgs

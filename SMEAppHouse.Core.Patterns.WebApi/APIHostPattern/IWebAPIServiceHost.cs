@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using SMEAppHouse.Core.Patterns.EF.ModelComposites.Interfaces;
-using SMEAppHouse.Core.Patterns.Repo.Repository.Abstractions;
+using SMEAppHouse.Core.Patterns.EF.EntityCompositing.Interfaces;
+using SMEAppHouse.Core.Patterns.Repo.Abstractions;
 
 namespace SMEAppHouse.Core.Patterns.WebApi.APIHostPattern
 {
@@ -14,7 +11,7 @@ namespace SMEAppHouse.Core.Patterns.WebApi.APIHostPattern
     /// <typeparam name="TPk"></typeparam>
     public interface IWebApiServiceHost<TEntity, TPk>
         where TPk : struct
-        where TEntity : class, IEntityKeyed<TPk>
+        where TEntity : class, IKeyedEntity<TPk>
 
     {
         /// <summary>

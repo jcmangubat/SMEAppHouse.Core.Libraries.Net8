@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace SMEAppHouse.Core.ProcessService.Specials
+﻿namespace SMEAppHouse.Core.ProcessService.Specials
 {
     public static class AsyncHelpers
     {

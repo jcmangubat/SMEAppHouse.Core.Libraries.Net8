@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SMEAppHouse.Core.TopshelfAdapter
+﻿namespace SMEAppHouse.Core.TopshelfAdapter
 {
     public class ServiceInitializedEventArgs : EventArgs
     {

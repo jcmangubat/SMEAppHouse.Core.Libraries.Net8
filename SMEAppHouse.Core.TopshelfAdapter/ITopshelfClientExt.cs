@@ -1,5 +1,4 @@
-﻿using System.Threading;
-using SMEAppHouse.Core.TopshelfAdapter.Common;
+﻿using SMEAppHouse.Core.TopshelfAdapter.Common;
 
 namespace SMEAppHouse.Core.TopshelfAdapter
 {

@@ -700,4 +700,29 @@ public static class CodeKit
         var slug = URLSafeString(string.Join('-', titleParts));
         return slug;
     }
+
+    /// <summary>
+    /// Generates an alphanumeric identity code from a <see cref="Guid"/> by converting it to an uppercase string,
+    /// removing dashes, and taking a specified number of characters.
+    /// </summary>
+    /// <param name="guid">The <see cref="Guid"/> used as the base for generating the identity code.</param>
+    /// <param name="length">The number of alphanumeric characters to include in the generated code. Defaults to 6.</param>
+    /// <returns>A string containing an uppercase alphanumeric identity code of the specified length.</returns>
+    /// <remarks>
+    /// The method reverses the <see cref="Guid"/> string, removes dashes, and extracts the first specified number 
+    /// of alphanumeric characters, resulting in a unique identifier.
+    /// </remarks>
+    public static string GenerateIdentityCode(this Guid guid, int length = 6)
+    {
+        // Generate a GUID and convert to uppercase string
+        var guidString = guid.ToString().ToUpper().Reverse();
+
+        // Remove dashes and take the first 6 alphanumeric characters
+        var userCode = new string(guidString
+            .Where(c => char.IsLetterOrDigit(c)) // Keep only alphanumeric characters
+            .Take(length) // Take the first 6 characters
+            .ToArray());
+
+        return userCode;
+    }
 }

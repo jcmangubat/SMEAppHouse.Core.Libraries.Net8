@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-
-namespace SMEAppHouse.Core.ProcessService.Specials
+﻿namespace SMEAppHouse.Core.ProcessService.Specials
 {
     public static class Utils
     {

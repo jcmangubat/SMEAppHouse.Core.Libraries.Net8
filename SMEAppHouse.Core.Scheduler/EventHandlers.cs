@@ -1,7 +1,5 @@
 ﻿// ReSharper disable InconsistentNaming
 
-using System;
-
 namespace SMEAppHouse.Core.Scheduler
 {
 

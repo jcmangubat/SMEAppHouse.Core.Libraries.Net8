@@ -36,15 +36,17 @@ public class KeyedAuditableEntity<TPk> : KeyedEntity<TPk>, IKeyedAuditableEntity
     }
 
     [DatabaseGenerated(DatabaseGeneratedOption.None)]
-    [Column(Order = 511)]
+    [Column(Order = 512)]
     [DataType(DataType.Text)]
-    [StringLength(132)]
-    public string ReasonArchived
+    [StringLength(240)]
+    public string? ReasonArchived
     {
         get => _reasonArchived;
         set
         {
-            if (value.Equals(_reasonArchived)) return;
+            if ((value ?? string.Empty).Equals(_reasonArchived))
+                return;
+
             _reasonArchived = value;
         }
     }

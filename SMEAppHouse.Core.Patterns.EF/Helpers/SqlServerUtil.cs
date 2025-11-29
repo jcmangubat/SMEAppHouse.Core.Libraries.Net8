@@ -6,18 +6,20 @@ namespace SMEAppHouse.Core.Patterns.EF.Helpers
 {
     public static class SqlServerUtil
     {
+        // Default command timeout in seconds
+        private const int DefaultCommandTimeout = 30;
         public static async Task<List<T>> SqlGetObjectList<T>(string connStr, string sqlQry,
             CommandType sqlCmdType)
             where T : class
         {
-            return await SqlGetObjectList<T>(connStr, sqlQry, sqlCmdType, 30, null);
+            return await SqlGetObjectList<T>(connStr, sqlQry, sqlCmdType, DefaultCommandTimeout, null);
         }
 
         public static async Task<List<T>> SqlGetObjectList<T>(string connStr, string sqlQry,
             CommandType sqlCmdType, SqlParameter[] sqlQryParams)
             where T : class
         {
-            return await SqlGetObjectList<T>(connStr, sqlQry, sqlCmdType, 30, sqlQryParams);
+            return await SqlGetObjectList<T>(connStr, sqlQry, sqlCmdType, DefaultCommandTimeout, sqlQryParams);
         }
 
         public static async Task<List<T>> SqlGetObjectList<T>(string connStr, string sqlQry,
@@ -32,45 +34,89 @@ namespace SMEAppHouse.Core.Patterns.EF.Helpers
             CommandType sqlCmdType)
             where T : class
         {
-            return await SqlGetObjectList<T>(sqlConnection, sqlQry, sqlCmdType, 30, null);
+            return await SqlGetObjectList<T>(sqlConnection, sqlQry, sqlCmdType, DefaultCommandTimeout, null);
         }
 
         public static async Task<List<T>> SqlGetObjectList<T>(SqlConnection sqlConnection, string sqlQry,
             CommandType sqlCmdType, SqlParameter[] sqlQryParams)
             where T : class
         {
-            return await SqlGetObjectList<T>(sqlConnection, sqlQry, sqlCmdType, 30, sqlQryParams);
+            return await SqlGetObjectList<T>(sqlConnection, sqlQry, sqlCmdType, DefaultCommandTimeout, sqlQryParams);
         }
 
         public static async Task<List<T>> SqlGetObjectList<T>(SqlConnection sqlConnection, string sqlQry, CommandType sqlCmdType, int sqlCmdTimeout, SqlParameter[] sqlQryParams)
             where T : class
         {
+            // Cache property info to avoid repeated reflection calls
+            var type = typeof(T);
+            var properties = type.GetProperties();
+            
             Func<IDataRecord, T> toExplicitOfT = (dr) =>
             {
                 var obj = Activator.CreateInstance<T>();
-                foreach (var prop in obj.GetType().GetProperties())
+                
+                foreach (var prop in properties)
                 {
-                    if (obj.GetType().GetProperty(prop.Name) == null)
-                        continue;
-
                     try
                     {
-                        if (!object.Equals(dr[prop.Name], DBNull.Value))
+                        // Check if column exists in the data record
+                        var columnIndex = -1;
+                        try
                         {
-                            // used for checking if Type instance is a nullable enum
-                            var uType = Nullable.GetUnderlyingType(prop.PropertyType);
-                            if (uType != null && uType.IsEnum)
-                                prop.SetValue(obj, Enum.Parse(uType, dr[prop.Name].ToString()));
-                            else if (prop.PropertyType.IsEnum)
-                                prop.SetValue(obj, Enum.Parse(prop.PropertyType, dr[prop.Name].ToString()));
-                            else
-                                prop.SetValue(obj, dr[prop.Name], null);
+                            columnIndex = dr.GetOrdinal(prop.Name);
+                        }
+                        catch (IndexOutOfRangeException)
+                        {
+                            // Column doesn't exist, skip this property
+                            continue;
+                        }
+
+                        if (dr.IsDBNull(columnIndex))
+                            continue;
+
+                        var value = dr[columnIndex];
+                        
+                        // Handle nullable enum types
+                        var underlyingType = Nullable.GetUnderlyingType(prop.PropertyType);
+                        if (underlyingType != null && underlyingType.IsEnum)
+                        {
+                            prop.SetValue(obj, Enum.Parse(underlyingType, value.ToString()));
+                        }
+                        else if (prop.PropertyType.IsEnum)
+                        {
+                            prop.SetValue(obj, Enum.Parse(prop.PropertyType, value.ToString()));
+                        }
+                        else
+                        {
+                            // Handle type conversion for non-enum types
+                            var propType = prop.PropertyType;
+                            if (value.GetType() != propType)
+                            {
+                                // Convert the value to the property type
+                                if (propType.IsGenericType && propType.GetGenericTypeDefinition() == typeof(Nullable<>))
+                                {
+                                    var nullableType = Nullable.GetUnderlyingType(propType);
+                                    if (nullableType != null)
+                                    {
+                                        value = Convert.ChangeType(value, nullableType);
+                                    }
+                                }
+                                else
+                                {
+                                    value = Convert.ChangeType(value, propType);
+                                }
+                            }
+                            prop.SetValue(obj, value);
                         }
                     }
-                    catch (Exception e)
+                    catch (Exception ex)
                     {
-                        Console.WriteLine(e);
-                        //throw;
+                        // Log the error but continue processing other properties
+                        // In production, consider using a proper logging framework
+                        throw new InvalidOperationException(
+                            $"Failed to set property '{prop.Name}' on type '{type.Name}'. " +
+                            $"Expected type: {prop.PropertyType.Name}, Value: {dr[prop.Name]?.GetType().Name ?? "null"}. " +
+                            $"Inner exception: {ex.Message}", ex);
                     }
                 }
                 return obj;
@@ -128,14 +174,14 @@ namespace SMEAppHouse.Core.Patterns.EF.Helpers
             Func<IDataRecord, T> selector)
             where T : IConvertible
         {
-            return SelectValues(conn, sqlQry, sqlCmdType, 0, selector, null);
+            return SelectValues(conn, sqlQry, sqlCmdType, DefaultCommandTimeout, selector, null);
         }
 
         public static List<T> SelectValues<T>(SqlConnection conn, string sqlQry, CommandType sqlCmdType,
             Func<IDataRecord, T> selector, SqlParameter[] sqlQryParams)
             where T : IConvertible
         {
-            return SelectValues(conn, sqlQry, sqlCmdType, 0, selector, sqlQryParams);
+            return SelectValues(conn, sqlQry, sqlCmdType, DefaultCommandTimeout, selector, sqlQryParams);
         }
 
         public static List<T> SelectValues<T>(SqlConnection conn, string sqlQry, CommandType sqlCmdType, int sqlCmdTimeout, Func<IDataRecord, T> selector, SqlParameter[] sqlQryParams)
@@ -165,7 +211,7 @@ namespace SMEAppHouse.Core.Patterns.EF.Helpers
             Func<IDataRecord, T> selector, SqlParameter[] sqlQryParams)
             where T : IConvertible
         {
-            var results = SelectValues(conn, sqlQry, sqlCmdType, 0, selector, sqlQryParams);
+            var results = SelectValues(conn, sqlQry, sqlCmdType, DefaultCommandTimeout, selector, sqlQryParams);
             return results.Any()
                 ? results[0]
                 : default(T);

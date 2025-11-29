@@ -1,14 +1,9 @@
-﻿using System;
+﻿using SMEAppHouse.Core.ScraperBox;
+using SMEAppHouse.Core.ScraperBox.Models;
 using System.Diagnostics;
-using System.IO;
 using System.Net;
-using System.Net.Http;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
-using System.Threading;
-using System.Threading.Tasks;
-using SMEAppHouse.Core.ScraperBox;
-using SMEAppHouse.Core.ScraperBox.Models;
 
 namespace SMEAppHouse.Core.FreeIPProxy
 {
@@ -270,7 +265,7 @@ namespace SMEAppHouse.Core.FreeIPProxy
             {
                 var sw = Stopwatch.StartNew();
                 proxy.CheckStatus = IPProxy.CheckStatusEnum.Checking;
-                var content = SeleniumHelper.GrabPage("http://example.com", proxy.AsTuple());
+                var content = ScraperBox.Selenium.Helper.GrabPage("http://example.com", proxy.AsTuple());
                 sw.Stop();
                 proxy.SpeedRate = (int) sw.ElapsedMilliseconds;
                 proxy.CheckStatus = IPProxy.CheckStatusEnum.Checked;

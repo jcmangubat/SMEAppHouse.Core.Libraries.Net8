@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading;
-
-namespace SMEAppHouse.Core.QuartzExt
+﻿namespace SMEAppHouse.Core.QuartzExt
 {
     public class JobServiceMemberBase<T> : IJobServiceMember
         where T : JobServiceMemberBase<T>

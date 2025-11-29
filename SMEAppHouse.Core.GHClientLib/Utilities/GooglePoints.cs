@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Text;
 using SMEAppHouse.Core.GHClientLib.Model;
 
 namespace SMEAppHouse.Core.GHClientLib.Utilities

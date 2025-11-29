@@ -1,4 +1,3 @@
-using System;
 using Microsoft.EntityFrameworkCore;
 
 namespace SMEAppHouse.Core.Patterns.Repo.Generic

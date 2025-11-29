@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using SMEAppHouse.Core.ScraperBox.Models;
+﻿using SMEAppHouse.Core.ScraperBox.Models;
 
 namespace SMEAppHouse.Core.FreeIPProxy.Handlers
 {

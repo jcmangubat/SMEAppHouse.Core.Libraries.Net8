@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
-using OpenQA.Selenium;
+﻿using System.Net;
 using PuppeteerSharp;
 using SMEAppHouse.Core.CodeKits.Tools;
 
@@ -12,8 +6,8 @@ namespace SMEAppHouse.Core.PuppeteerAdapter
 {
     public class PuppeteerCrawlerAgent : IPuppeteerCrawlerAgent
     {
-        public Browser Browser { get; set; }
-        public Page HtmlPage { get; set; }
+        public IBrowser Browser { get; set; }
+        public IPage HtmlPage { get; set; }
 
         public bool IsReady { get; private set; }
         public bool IsHeadless { get; private set; }
@@ -33,8 +27,10 @@ namespace SMEAppHouse.Core.PuppeteerAdapter
             {
                 Console.WriteLine("Attempting to update the chromium engine browser to local...");
 
-                await (new BrowserFetcher())
-                    .DownloadAsync(BrowserFetcher.DefaultRevision);
+                // BrowserFetcher.DefaultRevision removed in newer PuppeteerSharp versions
+                // Using a specific revision instead
+                var browserFetcher = new BrowserFetcher();
+                await browserFetcher.DownloadAsync();
                 Console.WriteLine("Navigating to developers.google.com");
 
                 // Args = new string[] { "--proxy-server='direct://'",
@@ -45,7 +41,7 @@ namespace SMEAppHouse.Core.PuppeteerAdapter
                 if (no2DCanvas.HasValue && no2DCanvas.Value) browserArgs.Add("--disable-accelerated-2d-canvas");
                 if (noGPU.HasValue && noGPU.Value) browserArgs.Add("--disable-gpu");
 
-                Browser = await Puppeteer.LaunchAsync(new LaunchOptions
+                Browser = await PuppeteerSharp.Puppeteer.LaunchAsync(new LaunchOptions
                 {
                     Headless = IsHeadless,
                     Args = browserArgs.ToArray()
@@ -66,12 +62,12 @@ namespace SMEAppHouse.Core.PuppeteerAdapter
             });
         }
 
-        public bool TryGrabPage(string url, out Task<Response> responseTsk, bool inNewPage = false, bool? noImage = false)
+        public bool TryGrabPage(string url, out Task<IResponse> responseTsk, bool inNewPage = false, bool? noImage = false)
         {
             return TryGrabPage(url, out responseTsk, out _, inNewPage, noImage);
         }
 
-        public bool TryGrabPage(string url, out Task<Response> responseTsk, out Page page, bool inNewPage = false, bool? noImage = false)
+        public bool TryGrabPage(string url, out Task<IResponse> responseTsk, out IPage page, bool inNewPage = false, bool? noImage = false)
         {
             if (!IsReady)
                 throw new Exception("Chromium instance is not ready yet.");

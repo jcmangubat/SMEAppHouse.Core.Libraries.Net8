@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using OpenQA.Selenium;
-using OpenQA.Selenium.PhantomJS;
+using OpenQA.Selenium.Chrome;
 using SMEAppHouse.Core.FreeIPProxy.Handlers;
 using SMEAppHouse.Core.ProcessService.Engines;
 using SMEAppHouse.Core.ScraperBox;
 using SMEAppHouse.Core.ScraperBox.Models;
 using ScraperBoxHelper = SMEAppHouse.Core.ScraperBox.Selenium.Helper;
-#pragma warning disable 618
+
 
 namespace SMEAppHouse.Core.FreeIPProxy.Providers.Base
 {
@@ -64,10 +61,18 @@ namespace SMEAppHouse.Core.FreeIPProxy.Providers.Base
             AgentStatus = IPProxyAgentStatusEnum.Idle;
             PageNo = startPageNo == 0 ? 1 : startPageNo;
 
-            var service = PhantomJSDriverService.CreateDefaultService(".\\");
-            service.HideCommandPromptWindow = true;
+            // PhantomJS is deprecated - using Chrome headless as alternative
+            var chromeOptions = new ChromeOptions();
+            chromeOptions.AddArgument("--headless");
+            chromeOptions.AddArgument("--disable-gpu");
+            chromeOptions.AddArgument("--no-sandbox");
+            chromeOptions.AddArgument("--disable-dev-shm-usage");
+            chromeOptions.AddArgument("--window-size=1920,1080");
+            // Hide command prompt window equivalent
+            chromeOptions.AddArgument("--silent");
+            chromeOptions.AddArgument("--log-level=3");
 
-            _driver = new PhantomJSDriver(service);
+            _driver = new ChromeDriver(chromeOptions);
         }
         ~IPProxyCartridgeBase()
         {
@@ -146,7 +151,7 @@ namespace SMEAppHouse.Core.FreeIPProxy.Providers.Base
             InvokeEventFreeIPProxiesReading(new EventHandlers.FreeIPProxiesReadingEventArgs(TargetPgUrl));
 
             // Get the html response called from the url
-            var contentDoc = ScraperBoxHelper.GrabPage(_driver as PhantomJSDriver, TargetPgUrl, proxy?.AsTuple());
+            var contentDoc = ScraperBoxHelper.GrabPage(_driver, TargetPgUrl, proxy?.AsTuple());
 
             ValidatePage(contentDoc);
             if (!PageIsValid)

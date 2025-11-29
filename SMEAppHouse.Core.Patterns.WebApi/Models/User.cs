@@ -1,4 +1,4 @@
-﻿using SMEAppHouse.Core.Patterns.EF.ModelComposites.Abstractions;
+using SMEAppHouse.Core.Patterns.EF.EntityCompositing.Abstractions;
 
 namespace SMEAppHouse.Core.Patterns.WebApi.Models
 {

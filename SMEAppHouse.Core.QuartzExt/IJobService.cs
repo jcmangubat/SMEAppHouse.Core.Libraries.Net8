@@ -1,6 +1,4 @@
-﻿using System.Threading;
-
-#pragma warning disable 1591
+﻿#pragma warning disable 1591
 namespace SMEAppHouse.Core.QuartzExt
 {
     public interface IJobService

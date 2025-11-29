@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp2.2;net461</TargetFrameworks>
+    <TargetFramework>net8.0</TargetFramework>
     <Description>Library for handling Puppeteer functionalities.</Description>
   </PropertyGroup>
 

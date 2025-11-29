@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-
 namespace SMEAppHouse.Core.Patterns.Repo.Generic
 {
     public interface IRepository<T> : IReadRepository<T>, IDisposable where T : class

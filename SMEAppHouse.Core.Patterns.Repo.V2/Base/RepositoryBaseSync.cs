@@ -1,21 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
-using SMEAppHouse.Core.CodeKits.Exceptions;
+using SMEAppHouse.Core.CodeKits.Helpers;
+using SMEAppHouse.Core.Patterns.EF.EntityCompositing.Interfaces;
 using SMEAppHouse.Core.CodeKits.Tools;
 
 namespace SMEAppHouse.Core.Patterns.Repo.V2.Base
 {
     public class RepositoryBaseSync<TEntity, TPk, TDbContext> : IRepositorySync<TEntity, TPk>, IDisposable
-        where TEntity : class, IIdentifiableEntity<TPk>
+        where TPk : struct
+        where TEntity : class, IKeyedEntity<TPk>
         where TDbContext : DbContext, new()
     {
-
         [Required]
         public DbContext Context { get; set; }
         public DbSet<TEntity> DbSet { get; set; }
@@ -67,7 +65,7 @@ namespace SMEAppHouse.Core.Patterns.Repo.V2.Base
         {
             try
             {
-                entity.DateRevised = DateTime.Now;
+                // DateRevised property is not available on IKeyedEntity - use DateModified instead if needed
                 DbSet.Attach(entity);
                 Context.Entry(entity).State = EntityState.Modified;
                 if (autoSave) Save();
@@ -575,7 +573,7 @@ namespace SMEAppHouse.Core.Patterns.Repo.V2.Base
         {
             try
             {
-                return DbSet.FromSql(query, parameters).ToList();
+                return DbSet.FromSqlRaw(query, parameters).ToList();
             }
             catch (Exception ex)
             {
@@ -593,7 +591,7 @@ namespace SMEAppHouse.Core.Patterns.Repo.V2.Base
         {
             try
             {
-                var result = DbSet.FromSql(query);
+                var result = DbSet.FromSqlRaw(query);
                 return result.ToList();
             }
             catch (Exception ex)

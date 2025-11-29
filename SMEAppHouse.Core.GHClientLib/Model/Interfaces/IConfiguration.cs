@@ -1,5 +1,3 @@
-using System;
-
 namespace SMEAppHouse.Core.GHClientLib.Model.Interfaces
 {
     public interface IConfiguration

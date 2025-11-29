@@ -234,7 +234,7 @@ public abstract class EntityConfigurationAuditable<TEntity, TPk> : IEntityConfig
 
         // add the rest not ignored
         entityBuilder.RegisterConventionalField(fieldsIgnoreList, entity => entity.DateCreated)?
-            .HasColumnName("_dateCreated").HasDefaultValue(DateTime.Now).IsRequired(true);
+            .HasColumnName("_dateCreated").HasDefaultValue(DateTime.UtcNow).IsRequired(true);
 
         entityBuilder.RegisterConventionalField(fieldsIgnoreList, entity => entity.DateModified)?
             .HasColumnName("_dateModified").IsRequired(false);
@@ -248,77 +248,5 @@ public abstract class EntityConfigurationAuditable<TEntity, TPk> : IEntityConfig
         entityBuilder.RegisterConventionalField(fieldsIgnoreList, entity => entity.ReasonArchived)?
             .HasColumnName("_reasonArchived").IsRequired(false);
 
-        // UsePropertyAccessMode(PropertyAccessMode.Property) :: https://stackoverflow.com/a/50776738/3796898
-        // fix to error related to "Expression of type 'System.Nullable`1[System.Boolean]' cannot be used for assignment to type 'System.Boolean'"
-        /*entityBuilder.RegisterConventionalField(fieldsIgnoreList, entity => entity.IsNotActive)?
-            .HasColumnName("_isNotActive").HasDefaultValue(false).IsRequired(false)
-            .UsePropertyAccessMode(PropertyAccessMode.Property);
-
-        entityBuilder.RegisterConventionalField(fieldsIgnoreList, entity => entity.DateCreated)?
-            .HasColumnName("_dateCreated").HasDefaultValue(DateTime.Now).IsRequired(true);
-
-        entityBuilder.RegisterConventionalField(fieldsIgnoreList, entity => entity.DateRevised)?
-            .HasColumnName("_dateRevised").IsRequired(false);
-
-        entityBuilder.RegisterConventionalField(fieldsIgnoreList, entity => entity.CreatedBy)?
-            .HasColumnName("_createdBy").IsRequired(false);
-
-        entityBuilder.RegisterConventionalField(fieldsIgnoreList, entity => entity.RevisedBy)?
-            .HasColumnName("_revisedBy").IsRequired(false);
-
-        
-        entityBuilder.RegisterConventionalField(fieldsIgnoreList, entity => entity.ArchivedBy)?
-            .HasColumnName("_archivedBy").IsRequired(false);
-        
-        */
     }
-
-    //private static void SetupConventionalFields_BAK<T>(EntityTypeBuilder<TEntity> entityBuilder, Expression<Func<TEntity, object>>[] conventionFieldsToIgnore, bool archivable = false)
-    //    where T : class, IKeyedEntity<TPk>
-    //{
-    //    var fieldsToIgnore = new List<Expression<Func<TEntity, object>>>(conventionFieldsToIgnore ?? new List<Expression<Func<TEntity, object>>>().ToArray());
-
-    //    if (!archivable)
-    //    {
-    //        fieldsToIgnore.Add(e => e.IsArchived);
-    //        fieldsToIgnore.Add(e => e.ReasonArchived);
-    //        fieldsToIgnore.Add(e => e.DateArchived);
-    //    }
-
-    //    foreach (var exprssn in fieldsToIgnore)
-    //        entityBuilder.Ignore(exprssn);
-
-    //    var fieldsIgnoreList = fieldsToIgnore.ToArray().ToListOfFields();
-
-    //    // add the rest not ignored
-    //    //entityBuilder.RegisterConventionalField(fieldsIgnoreList, entity => entity.Ordinal)?
-    //    //    .HasColumnName("_ordinal").HasDefaultValue(0).IsRequired(false);
-
-    //    // UsePropertyAccessMode(PropertyAccessMode.Property) :: https://stackoverflow.com/a/50776738/3796898
-    //    // fix to error related to "Expression of type 'System.Nullable`1[System.Boolean]' cannot be used for assignment to type 'System.Boolean'"
-    //    /*entityBuilder.RegisterConventionalField(fieldsIgnoreList, entity => entity.IsNotActive)?
-    //        .HasColumnName("_isNotActive").HasDefaultValue(false).IsRequired(false)
-    //        .UsePropertyAccessMode(PropertyAccessMode.Property);
-
-    //    entityBuilder.RegisterConventionalField(fieldsIgnoreList, entity => entity.DateCreated)?
-    //        .HasColumnName("_dateCreated").HasDefaultValue(DateTime.Now).IsRequired(true);
-
-    //    entityBuilder.RegisterConventionalField(fieldsIgnoreList, entity => entity.DateRevised)?
-    //        .HasColumnName("_dateRevised").IsRequired(false);
-
-    //    entityBuilder.RegisterConventionalField(fieldsIgnoreList, entity => entity.CreatedBy)?
-    //        .HasColumnName("_createdBy").IsRequired(false);
-
-    //    entityBuilder.RegisterConventionalField(fieldsIgnoreList, entity => entity.RevisedBy)?
-    //        .HasColumnName("_revisedBy").IsRequired(false);
-
-    //    entityBuilder.RegisterConventionalField(fieldsIgnoreList, entity => entity.IsArchived)?
-    //        .HasColumnName("_isArchived").IsRequired(false);
-    //    entityBuilder.RegisterConventionalField(fieldsIgnoreList, entity => entity.ArchivedBy)?
-    //        .HasColumnName("_archivedBy").IsRequired(false);
-    //    entityBuilder.RegisterConventionalField(fieldsIgnoreList, entity => entity.ReasonArchived)?
-    //        .HasColumnName("_reasonArchived").IsRequired(false);
-    //    entityBuilder.RegisterConventionalField(fieldsIgnoreList, entity => entity.DateArchived)?
-    //        .HasColumnName("_dateArchived").IsRequired(false);*/
-    //}
 }

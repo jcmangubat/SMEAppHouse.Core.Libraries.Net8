@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace SMEAppHouse.Core.Patterns.Repo.Generic.Paging
+﻿namespace SMEAppHouse.Core.Patterns.Repo.Generic.Paging
 {
     public static class PaginateExtensions
     {

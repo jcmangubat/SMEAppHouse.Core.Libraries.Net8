@@ -1,7 +1,6 @@
 ﻿// ReSharper disable InconsistentNaming
 
 using SMEAppHouse.Core.TopshelfAdapter.Common;
-using System;
 
 namespace SMEAppHouse.Core.TopshelfAdapter.Aggregation
 {

@@ -12,9 +12,7 @@
 // <summary></summary>
 // ***********************************************************************
 
-using SMEAppHouse.Core.Patterns.EF.ModelComposites.Interfaces;
-using System.Collections.Generic;
-using System.Net.Http;
+using SMEAppHouse.Core.Patterns.EF.EntityCompositing.Interfaces;
 
 namespace SMEAppHouse.Core.Patterns.WebApi.APIClientPattern
 {

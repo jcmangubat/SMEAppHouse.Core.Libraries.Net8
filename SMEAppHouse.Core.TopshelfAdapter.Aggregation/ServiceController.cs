@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.Linq;
 using SMEAppHouse.Core.CodeKits.Data;
 using SMEAppHouse.Core.TopshelfAdapter.Common;
 

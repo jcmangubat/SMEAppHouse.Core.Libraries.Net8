@@ -227,7 +227,7 @@ public abstract class EntityConfiguration<TEntity, TPk> : IEntityConfiguration<T
 
         // add the rest not ignored
         entityBuilder.RegisterConventionalField(fieldsIgnoreList, entity => entity.DateCreated)?
-            .HasColumnName("_dateCreated").HasDefaultValue(DateTime.Now).IsRequired(true);
+            .HasColumnName("_dateCreated").HasDefaultValue(DateTime.UtcNow).IsRequired(true);
 
         entityBuilder.RegisterConventionalField(fieldsIgnoreList, entity => entity.DateModified)?
             .HasColumnName("_dateModified").IsRequired(false);

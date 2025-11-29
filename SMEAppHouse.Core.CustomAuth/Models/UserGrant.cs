@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SMEAppHouse.Core.CustomAuth.Models
+﻿namespace SMEAppHouse.Core.CustomAuth.Models
 {
     public class UserGrant
     {

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using GeoCoordinatePortable;
+﻿using GeoCoordinatePortable;
 using SMEAppHouse.Core.GHClientLib.Model;
 
 namespace SMEAppHouse.Core.GHClientLib.Extensions

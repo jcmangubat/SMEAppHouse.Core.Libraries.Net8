@@ -10,10 +10,13 @@
   <ItemGroup>
     <Compile Remove="DbContextAbstractions\**" />
     <Compile Remove="EntityCompositing\Abstractions\RefInterfaces\**" />
+    <Compile Remove="Paging\**" />
     <EmbeddedResource Remove="DbContextAbstractions\**" />
     <EmbeddedResource Remove="EntityCompositing\Abstractions\RefInterfaces\**" />
+    <EmbeddedResource Remove="Paging\**" />
     <None Remove="DbContextAbstractions\**" />
     <None Remove="EntityCompositing\Abstractions\RefInterfaces\**" />
+    <None Remove="Paging\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,38 +25,23 @@
 
   <ItemGroup>
     <Compile Include="DbContextAbstractions\AppDbContextExtended.cs" />
+    <Compile Include="DbContextAbstractions\AppDbContextBase.cs" />
+    <Compile Include="DbContextAbstractions\DbContextFactory.cs" />
+    <Compile Include="DbContextAbstractions\IDbContextFactory.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="8.0.10" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Analyzers" Version="8.0.10" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.10" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="9.0.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Analyzers" Version="9.0.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="9.0.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.9" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.9" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
-    <PackageReference Include="Microsoft.EntityFrameworkCore">
-      <Version>5.0.6</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions">
-      <Version>5.0.6</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory">
-      <Version>5.0.6</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational">
-      <Version>5.0.6</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite">
-      <Version>5.0.6</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer">
-      <Version>5.0.6</Version>
-    </PackageReference>
-  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\SMEAppHouse.Core.CodeKits\SMEAppHouse.Core.CodeKits.csproj" />
+    <ProjectReference Include="..\SMEAppHouse.Core.AppMgt\SMEAppHouse.Core.AppMgt.csproj" />
   </ItemGroup>
 
 </Project>

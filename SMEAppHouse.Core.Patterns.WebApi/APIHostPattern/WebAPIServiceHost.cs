@@ -1,14 +1,10 @@
-﻿// ReSharper disable InheritdocConsiderUsage
+// ReSharper disable InheritdocConsiderUsage
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using SMEAppHouse.Core.Patterns.EF.ModelComposites.Interfaces;
-using SMEAppHouse.Core.Patterns.Repo.Repository.Abstractions;
+using SMEAppHouse.Core.Patterns.EF.EntityCompositing.Interfaces;
+using SMEAppHouse.Core.Patterns.Repo.Abstractions;
 
 namespace SMEAppHouse.Core.Patterns.WebApi.APIHostPattern
 {
@@ -16,7 +12,7 @@ namespace SMEAppHouse.Core.Patterns.WebApi.APIHostPattern
     [Route("api/v{version:apiVersion}/[controller]")]
     public class WebApiServiceHost<TEntity, TPk> : WebApiServiceHostExt, IWebApiServiceHost<TEntity, TPk>
         where TPk : struct
-        where TEntity : class, IEntityKeyed<TPk>
+        where TEntity : class, IKeyedEntity<TPk>
     {
         ///<inheritdoc cref="IIdentifiableEntity{TPk}"/>
         /// <summary>

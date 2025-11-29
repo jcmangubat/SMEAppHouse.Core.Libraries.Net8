@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using SMEAppHouse.Core.ProcessService.Engines.Interfaces;
+﻿using SMEAppHouse.Core.ProcessService.Engines.Interfaces;
 
 namespace SMEAppHouse.Core.ProcessService.Engines
 {

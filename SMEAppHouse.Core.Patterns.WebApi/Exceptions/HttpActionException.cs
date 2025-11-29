@@ -12,7 +12,6 @@
 // <summary></summary>
 // ***********************************************************************
 
-using System;
 using System.Net;
 
 namespace SMEAppHouse.Core.Patterns.WebApi.Exceptions

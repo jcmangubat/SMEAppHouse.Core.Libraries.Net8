@@ -1,5 +1,4 @@
-﻿using System;
-using NodaTime;
+﻿using NodaTime;
 using NodaTime.Text;
 
 namespace SMEAppHouse.Core.Scheduler

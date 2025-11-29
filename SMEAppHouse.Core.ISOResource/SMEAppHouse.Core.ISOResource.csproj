@@ -1,9 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp2.2;net461</TargetFrameworks>
+    <TargetFramework>net8.0</TargetFramework>
     <Description>ISO Resource library.</Description>
   </PropertyGroup>
+
+  <Import Project="..\.shared\common-assembly-info.proj" />
 
   <ItemGroup>
     <Compile Remove="Countriy_x.cs" />
@@ -18,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
   </ItemGroup>
 
   <ItemGroup>

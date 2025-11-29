@@ -13,10 +13,7 @@
 // ***********************************************************************
 
 using Newtonsoft.Json;
-using SMEAppHouse.Core.Patterns.EF.ModelComposites.Interfaces;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Threading.Tasks;
+using SMEAppHouse.Core.Patterns.EF.EntityCompositing.Interfaces;
 
 namespace SMEAppHouse.Core.Patterns.WebApi.APIClientPattern
 {

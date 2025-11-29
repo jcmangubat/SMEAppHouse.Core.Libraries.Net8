@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using SMEAppHouse.Core.CodeKits.Tools;
 using SMEAppHouse.Core.TopshelfAdapter.Common;
 

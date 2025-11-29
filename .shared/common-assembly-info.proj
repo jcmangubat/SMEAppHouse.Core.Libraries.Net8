@@ -1,31 +1,51 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project>
 
 	<PropertyGroup>
 
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 
-		<Authors>James Mangubat</Authors>
-		<Company>SME App House</Company>
-		<Copyright>Copyright © SME App House 2024</Copyright>
+		<Authors>IT Division</Authors>
+		<Company>Nephiora IT Solutions</Company>
+		<Copyright>Copyright © Nephiora IT Solutions 2025</Copyright>
 		<Product>Application Components (.Net Core Projects)</Product>
-		<ProductName>SME App House Component Libraries</ProductName>
-		<PackageLicense>https://www.smedigital.ph</PackageLicense>
+		<ProductName>Nephiora IT Solutions - SMEAppHouse Component Libraries</ProductName>
+		
+		<!-- License: Use SPDX expression for Apache 2.0 -->
+		<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+		
 		<PackageProjectUrl>https://www.smedigital.ph</PackageProjectUrl>
-		<PackageIconUrl>https://www.smedigital.ph/favicon.ico</PackageIconUrl>
-		<RepositoryUrl>https://www.smedigital.ph</RepositoryUrl>
+		
+		<!-- Icon: Use embedded icon file instead of URL -->
+		<PackageIcon>Nephiora.png</PackageIcon>
+		
+		<RepositoryUrl>https://www.nephiora.ph</RepositoryUrl>
 		<RepositoryType>repositoryType</RepositoryType>
 		<PackageReleaseNotes>release notes</PackageReleaseNotes>
-		<PackageTags>.Net Core, SMEAppHouse, SMEDigital</PackageTags>
+		<PackageTags>.Net Core, Nephiora, SMEAppHouse, SMEDigital</PackageTags>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <LangVersion>Latest</LangVersion>
 
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     
-		<Version>8.0.6.00</Version>
-		<AssemblyVersion>8.0.6.00</AssemblyVersion>
-		<FileVersion>8.0.6.00</FileVersion>
+		<Version>9.0.9.00</Version>
+		<AssemblyVersion>9.0.9.00</AssemblyVersion>
+		<FileVersion>9.0.9.00</FileVersion>
 		
+	</PropertyGroup>
+
+	<!-- Include icon file in package from .shared folder -->
+	<ItemGroup>
+		<None Include="$(MSBuildThisFileDirectory)Nephiora.png" Pack="true" PackagePath="\" />
+	</ItemGroup>
+
+	<!-- Include README.md in package if it exists in project folder -->
+	<ItemGroup Condition="Exists('$(MSBuildProjectDirectory)\README.md')">
+		<None Include="$(MSBuildProjectDirectory)\README.md" Pack="true" PackagePath="\" />
+	</ItemGroup>
+
+	<PropertyGroup Condition="Exists('$(MSBuildProjectDirectory)\README.md')">
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 
 </Project>

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace SMEAppHouse.Core.AppMgt.Messaging
+﻿namespace SMEAppHouse.Core.AppMgt.Messaging
 {
     public interface IPayloadsEnvelope
     {

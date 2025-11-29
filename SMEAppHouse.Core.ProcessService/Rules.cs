@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SMEAppHouse.Core.ProcessService
+﻿namespace SMEAppHouse.Core.ProcessService
 {
     public enum EngineStatusEnum
     {

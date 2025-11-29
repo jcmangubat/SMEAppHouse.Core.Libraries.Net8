@@ -4,6 +4,6 @@
     {
         bool? IsArchived { get; set; }
         DateTime? DateArchived { get; set; }
-        string ReasonArchived { get; set; }
+        string? ReasonArchived { get; set; }
     }
 }

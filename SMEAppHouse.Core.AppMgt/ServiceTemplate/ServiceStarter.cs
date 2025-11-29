@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using SMEAppHouse.Core.AppMgt.Messaging;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace SMEAppHouse.Core.AppMgt.ServiceTemplate
 {

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SMEAppHouse.Core.ProcessService.Engines.Interfaces
+﻿namespace SMEAppHouse.Core.ProcessService.Engines.Interfaces
 {
     public interface IProcessAgentBasic
     {
