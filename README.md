@@ -203,13 +203,17 @@ The solution contains **2 main solution files**:
 - **Purpose**: Library for web scraping operations
 - **Key Features**:
   - Helper class - Web page fetching, HTML parsing
+  - ContentGenerator - Queue-based HTML content generator with ProcessAgentViaTask
   - IPProxy model - Proxy server representation
   - PageInstruction - Pagination support
   - UserAgents - Predefined user agent strings
+  - HtmlSource/HtmlTarget models - Source configuration and target processing
+  - IContentGenerator interface - Content generation abstraction
 - **Dependencies**:
   - HtmlAgilityPack (v1.12.3)
   - ScrapySharp (v3.0.0)
-- **Documentation**: `.documentations/SMEAppHouse.Core.ScraperBox_README.md` (447 lines)
+  - SMEAppHouse.Core.ProcessService (for ProcessAgentViaTask)
+- **Documentation**: `.documentations/SMEAppHouse.Core.ScraperBox_README.md` (447+ lines)
 
 #### SMEAppHouse.Core.SeleniumExt
 - **Target Framework**: .NET 8.0
@@ -223,6 +227,8 @@ The solution contains **2 main solution files**:
   - Selenium.WebDriver (v4.35.0)
   - Selenium.Support (v4.35.0)
 - **Documentation**: `.documentations/SMEAppHouse.Core.SeleniumExt_README.md` (340 lines)
+- **Recent Updates** (January 2025):
+  - Verified all GPS.Frameworks.SeleniumHelpers functionality already present
 
 ---
 
@@ -433,6 +439,11 @@ JobServiceStarter<DataSyncJob>.Start(
 2. ✅ Obsolete conditional references removed
 3. ✅ Hardcoded assembly references cleaned up
 4. ✅ Comprehensive documentation created
+5. ✅ Legacy GPS.Frameworks projects merged/deleted (January 2025)
+   - GPS.Frameworks.FreeProxyProvider → Merged into SMEAppHouse.Core.FreeProxyProvider
+   - GPS.Frameworks.HtmlContentGenerator → Merged into SMEAppHouse.Core.ScraperBox
+   - GPS.Frameworks.HtmlHelper → Already existed, deleted
+   - GPS.Frameworks.SeleniumHelpers → Already existed, deleted
 
 ### Future Considerations
 1. **Package Updates**: Consider updating packages to latest versions where appropriate
@@ -441,7 +452,7 @@ JobServiceStarter<DataSyncJob>.Start(
 4. **Documentation**: Keep documentation updated as APIs evolve
 
 ### Architecture Improvements
-1. Consider consolidating similar projects where appropriate
+1. ✅ Consolidated legacy GPS.Frameworks projects into core libraries
 2. Standardize naming conventions across projects
 3. Review project organization in solution folders
 4. Consider creating a unified NuGet package structure
@@ -481,5 +492,6 @@ For questions, issues, or contributions:
 **Last Updated**: January 2025  
 **.NET Version**: 8.0  
 **Total Projects**: 30+ library projects  
-**Documentation**: Complete for all major projects
+**Documentation**: Complete for all major projects  
+**Recent Changes**: Merged legacy GPS.Frameworks projects into core libraries (January 2025)
 

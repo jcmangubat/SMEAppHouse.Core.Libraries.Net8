@@ -398,6 +398,174 @@ Type-safe enum for authentication methods.
 
 ### 3. Rules and Enums
 
+### 2. ContentGenerator (Class)
+
+Queue-based HTML content generator that processes URLs from a queue using ProcessAgentViaTask.
+
+**Namespace**: `SMEAppHouse.Core.ScraperBox`
+
+**Implements**: `IContentGenerator`, `ProcessAgentViaTask`
+
+#### Properties
+
+```csharp
+public List<HtmlTarget> Sources { get; set; }
+public bool UseProxyWhenAvailable { get; set; }
+public bool IsBusy { get; set; }
+```
+
+#### Events
+
+```csharp
+public event EventHandlers.StartingEventHandler OnStarting;
+public event EventHandlers.DoneEventHandler OnDone;
+public event EventHandlers.OperationExceptionEventHandler OnOperationException;
+```
+
+#### Methods
+
+##### FeedSource
+
+```csharp
+public void FeedSource(HtmlTarget target)
+```
+
+Adds a target URL to the processing queue.
+
+**Example:**
+```csharp
+var generator = new ContentGenerator();
+generator.FeedSource(new HtmlTarget 
+{ 
+    Url = "https://example.com/page1",
+    PageNo = 1 
+});
+```
+
+##### GetContent
+
+```csharp
+public string GetContent(string pgUrl)
+```
+
+Gets content from a URL with optional proxy support.
+
+**Example:**
+```csharp
+var generator = new ContentGenerator(() => myProxyProvider.GetProxy());
+var content = generator.GetContent("https://example.com");
+```
+
+#### Usage Example
+
+```csharp
+using SMEAppHouse.Core.ScraperBox;
+using SMEAppHouse.Core.ScraperBox.Models;
+
+// Create generator with proxy provider
+var generator = new ContentGenerator(() => proxyManager.GetFreeProxy());
+generator.UseProxyWhenAvailable = true;
+
+// Subscribe to events
+generator.OnStarting += (sender, e) => 
+{
+    Console.WriteLine($"Starting: {e.Target.Url}");
+};
+
+generator.OnDone += (sender, e) => 
+{
+    Console.WriteLine($"Done: {e.Target.Url} in {e.ElapsedTime.TotalSeconds}s");
+    // Process e.Target.Content
+};
+
+generator.OnOperationException += (sender, e) => 
+{
+    Console.WriteLine($"Error: {e.Exception.Message}");
+};
+
+// Feed URLs to process
+generator.FeedSource(new HtmlTarget { Url = "https://example.com/page1", PageNo = 1 });
+generator.FeedSource(new HtmlTarget { Url = "https://example.com/page2", PageNo = 2 });
+
+// Activate and start processing
+await generator.Activate();
+generator.Resume();
+```
+
+### 3. Models
+
+#### HtmlSource
+
+Source configuration for content generation with URL patterns and page ranges.
+
+**Namespace**: `SMEAppHouse.Core.ScraperBox.Models`
+
+**Properties:**
+- `string Id` - Source identifier
+- `string Name` - Source name
+- `string UrlPattern` - URL pattern with placeholders
+- `int PageNoMin` - Minimum page number
+- `int PageNoMax` - Maximum page number
+- `bool Ignore` - Whether to ignore this source
+- `int ContentSize` - Expected content size
+- `string UrlPatternDecoded` - Decoded URL pattern
+
+**Example:**
+```csharp
+var source = new HtmlSource
+{
+    Id = "example",
+    Name = "Example Site",
+    UrlPattern = "https://example.com/page?p={0}",
+    PageNoMin = 1,
+    PageNoMax = 100
+};
+```
+
+#### HtmlTarget
+
+Target URL to be processed by ContentGenerator.
+
+**Namespace**: `SMEAppHouse.Core.ScraperBox.Models`
+
+**Properties:**
+- `int PageNo` - Page number
+- `string Url` - Target URL
+- `string Content` - Retrieved content (set after processing)
+- `bool PageIsInvalid` - Whether the page is invalid
+- `HtmlSource Source` - Associated source configuration
+
+**Example:**
+```csharp
+var target = new HtmlTarget
+{
+    PageNo = 1,
+    Url = "https://example.com/page1",
+    Source = source
+};
+```
+
+### 4. Interfaces
+
+#### IContentGenerator
+
+Interface for content generation with queue-based processing.
+
+**Namespace**: `SMEAppHouse.Core.ScraperBox.Interfaces`
+
+**Properties:**
+- `bool IsBusy`
+- `bool UseProxyWhenAvailable`
+- `List<HtmlTarget> Sources`
+
+**Methods:**
+- `void FeedSource(HtmlTarget target)`
+
+**Events:**
+- `OnStarting`, `OnDone`, `OnOperationException`
+
+---
+
 #### HttpOpsRules
 
 HTTP operation rules and constants.

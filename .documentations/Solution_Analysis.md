@@ -187,10 +187,6 @@ The solution contains **2 main solution files**:
   - PuppeteerSharp
 - **Features**: Puppeteer-based scraping
 
-#### SMEAppHouse.ScraperBox.Puppeteer.TestApp
-- **Target Framework**: .NET 8.0 (Updated from netcoreapp2.2)
-- **Purpose**: Test application for Puppeteer scraping
-- **Type**: Console Application (Exe)
 
 ### 9. Proxy Management
 
@@ -200,7 +196,13 @@ The solution contains **2 main solution files**:
 - **Features**:
   - IPProxyCartridgeBase - Base proxy cartridge
   - PremProxyComCartridge - Proxy provider implementation
+  - USProxyCartridge - US proxy provider
+  - SamairRuCartridge - Samair.ru proxy provider (merged from GPS.Frameworks.FreeProxyProvider)
   - ProxyHttpNetCartridge - HTTP proxy cartridge
+- **Recent Updates** (January 2025):
+  - Merged GPS.Frameworks.FreeProxyProvider functionality
+  - Added SamairRuCartridge provider
+  - Enhanced USProxyCartridge with modern utilities
 
 #### SMEAppHouse.ScraperBox.FreeIPProxies
 - **Target Framework**: .NET 8.0 (Updated from netcoreapp2.2;net461)
@@ -234,14 +236,31 @@ The solution contains **2 main solution files**:
   - Embedded JSON resources (countries.json)
 - **Dependencies**: Newtonsoft.Json
 
-## Legacy Projects
+## Legacy Projects Migration
 
-### GPS.Frameworks.* Projects
-These appear to be legacy projects that may need migration or deprecation:
-- GPS.Frameworks.FreeProxyProvider
-- GPS.Frameworks.HtmlContentGenerator
-- GPS.Frameworks.HtmlHelper
-- GPS.Frameworks.SeleniumHelpers
+### GPS.Frameworks.* Projects (Merged/Deleted)
+The following legacy GPS.Frameworks projects have been successfully merged into SMEAppHouse.Core projects:
+
+- ✅ **GPS.Frameworks.FreeProxyProvider** → Merged into `SMEAppHouse.Core.FreeProxyProvider`
+  - Added SamairRuCartridge provider
+  - Enhanced USProxyCartridge with modern utilities
+  - All proxy management features consolidated
+
+- ✅ **GPS.Frameworks.HtmlContentGenerator** → Merged into `SMEAppHouse.Core.ScraperBox`
+  - Added ContentGenerator class for queue-based processing
+  - Added HtmlSource and HtmlTarget models
+  - Added IContentGenerator interface
+  - Event handlers integrated
+
+- ✅ **GPS.Frameworks.HtmlHelper** → Already existed in `SMEAppHouse.Core.ScraperBox`
+  - All HtmlUtil methods already present in Helper class
+  - UserAgents already existed
+  - No merge needed, project deleted
+
+- ✅ **GPS.Frameworks.SeleniumHelpers** → Already existed in `SMEAppHouse.Core.SeleniumExt`
+  - All extension methods already present
+  - Identical implementations found
+  - No merge needed, project deleted
 
 ## Migration Summary
 

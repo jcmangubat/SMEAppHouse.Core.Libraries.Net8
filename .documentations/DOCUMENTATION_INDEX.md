@@ -87,6 +87,20 @@ Get-ChildItem -Path . -Filter README.md -Recurse |
     Select-Object FullName, @{Name="Lines";Expression={(Get-Content $_.FullName | Measure-Object -Line).Lines}}
 ```
 
+## Recent Updates (January 2025)
+
+### Legacy Project Merges
+The following legacy GPS.Frameworks projects have been merged into core libraries:
+- **GPS.Frameworks.FreeProxyProvider** → Merged into `SMEAppHouse.Core.FreeProxyProvider`
+- **GPS.Frameworks.HtmlContentGenerator** → Merged into `SMEAppHouse.Core.ScraperBox`
+- **GPS.Frameworks.HtmlHelper** → Already existed in `SMEAppHouse.Core.ScraperBox` (deleted)
+- **GPS.Frameworks.SeleniumHelpers** → Already existed in `SMEAppHouse.Core.SeleniumExt` (deleted)
+
+### Documentation Updates
+- Updated `SMEAppHouse.Core.ScraperBox_README.md` with ContentGenerator documentation
+- Updated `Solution_Analysis.md` with migration details
+- Updated main `README.md` with recent changes
+
 ## Last Updated
 
 All documentation was created/updated: January 2025
