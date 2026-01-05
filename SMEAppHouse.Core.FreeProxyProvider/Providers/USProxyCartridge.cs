@@ -29,7 +29,7 @@ namespace SMEAppHouse.Core.FreeIPProxy.Providers
                 var doc = new HtmlDocument();
                 doc.LoadHtml(content);
                 var document = doc.DocumentNode;
-                var target = HtmlUtil.GetNodeByAttribute(document, "table", "id", "proxylisttable");
+                var target = ScraperBox.Helper.GetNodeByAttribute(document, "table", "id", "proxylisttable");
 
                 PageIsValid = target != null;
 
@@ -48,11 +48,11 @@ namespace SMEAppHouse.Core.FreeIPProxy.Providers
             var doc = new HtmlDocument();
             doc.LoadHtml(content);
             var document = doc.DocumentNode;
-            var target = HtmlUtil.GetNodeByAttribute(document, "table", "class", "proxytbl");
+            var target = ScraperBox.Helper.GetNodeByAttribute(document, "table", "class", "proxytbl");
 
             if (target == null) return;
 
-            var lines = HtmlUtil.GetNodeCollection(target, "tr");
+            var lines = ScraperBox.Helper.GetNodeCollection(target, "tr");
 
             lines.ToList().ForEach(e =>
             {
@@ -73,27 +73,27 @@ namespace SMEAppHouse.Core.FreeIPProxy.Providers
                 proxy.IPAddress = cells[0].InnerText.Trim();
 
                 //port
-                proxy.PortNo = int.Parse(HtmlUtil.Resolve(cells[1].InnerText.Trim()).Replace("\r\n", "").Trim());
+                proxy.PortNo = int.Parse(ScraperBox.Helper.Resolve(cells[1].InnerText.Trim()).Replace("\r\n", "").Trim());
 
                 // country
-                var country = HtmlUtil.Resolve(cells[2].InnerText.Trim());
+                var country = ScraperBox.Helper.Resolve(cells[2].InnerText.Trim());
                 var countryPrts = country.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-                proxy.Country = Helper.FindProxyCountryFromPartial(countryPrts[0].Replace(" ", "_"));
+                proxy.Country = ScraperBox.Helper.FindProxyCountryFromPartial(countryPrts[0].Replace(" ", "_"));
 
                 // anon
                 proxy.AnonymityLevel = cells[3].InnerText.Trim().Replace("\r\n", "").Trim().Contains("anonymous")
-                    ? ProxyAnonymityLevelsEnum.Anonymous
-                    : ProxyAnonymityLevelsEnum.Elite;
+                    ? IPProxyRules.ProxyAnonymityLevelsEnum.Anonymous
+                    : IPProxyRules.ProxyAnonymityLevelsEnum.Elite;
 
                 //protocol
-                var https = HtmlUtil.Resolve(cells[4].Attributes["class"].Value);
+                var https = ScraperBox.Helper.Resolve(cells[4].Attributes["class"].Value);
                 proxy.Protocol = https.ToLower().Contains("https")
-                    ? ProxyProtocolsEnum.HTTPS
-                    : ProxyProtocolsEnum.HTTP;
+                    ? IPProxyRules.ProxyProtocolsEnum.HTTPS
+                    : IPProxyRules.ProxyProtocolsEnum.HTTP;
 
                 //last check
                 var lastChecked = (new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day));
-                proxy.LastChecked = lastChecked.Add(TimeSpan.Parse(HtmlUtil.Resolve(cells[5].InnerText.Trim())));
+                proxy.LastChecked = lastChecked.Add(TimeSpan.Parse(ScraperBox.Helper.Resolve(cells[5].InnerText.Trim())));
 
                 RegisterProxy(proxy);
 

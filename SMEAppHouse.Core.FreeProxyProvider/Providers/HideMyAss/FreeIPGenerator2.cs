@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 using SMEAppHouse.Core.FreeProxyProvider.Handlers;
 using SMEAppHouse.Core.FreeProxyProvider.Helpers;
 using SMEAppHouse.Core.FreeProxyProvider.Models;
-using GPS.Frameworks.HtmlHelper;
+using SMEAppHouse.Core.ScraperBox;
+using SMEAppHouse.Core.ScraperBox.Models;
 using HtmlAgilityPack;
 
 namespace SMEAppHouse.Core.FreeProxyProvider.Providers.HideMyAss
@@ -102,8 +103,8 @@ namespace SMEAppHouse.Core.FreeProxyProvider.Providers.HideMyAss
                             {
                                 var fPxy = GetFreeProxy(true);
                                 var hmaPgDoc = (fPxy != null)
-                                    ? HtmlUtil.GetPageDocument(new Uri(hmaProxListUrl), fPxy.ToWebProxy(), UserAgents.GetFakeUserAgent(UserAgents.Chrome41022280))
-                                    : HtmlUtil.GetPageDocument(hmaProxListUrl, UserAgents.GetFakeUserAgent(UserAgents.Chrome41022280));
+                                    ? Helper.GetPageDocument(new Uri(hmaProxListUrl), fPxy.ToWebProxy(), UserAgents.GetFakeUserAgent(UserAgents.Chrome41022280))
+                                    : Helper.GetPageDocument(hmaProxListUrl, UserAgents.GetFakeUserAgent(UserAgents.Chrome41022280));
 
                                 hmaPgDoc = hmaPgDoc.Replace(Environment.NewLine, "");
 
@@ -422,7 +423,7 @@ namespace SMEAppHouse.Core.FreeProxyProvider.Providers.HideMyAss
                     freeProxy.Country = (ProxyCountry)Enum.Parse(typeof(ProxyCountry), country);
 
                     var connspeedNode = htmlNodes.ToArray()[5];
-                    connspeedNode = HtmlUtil.GetNodeByAttribute(connspeedNode, "div", "class", "speedbar connection_time");
+                    connspeedNode = Helper.GetNodeByAttribute(connspeedNode, "div", "class", "speedbar connection_time");
                     connspeedNode = connspeedNode.Descendants("div").ToArray()[0];
 
                     var rate = connspeedNode.Attributes["style"].Value.Replace("width:", "").Replace("%", "");
@@ -436,7 +437,7 @@ namespace SMEAppHouse.Core.FreeProxyProvider.Providers.HideMyAss
                         freeProxy.ConnectionTime = ProxyConnectionSpeedEnum.Medium;
 
                     var speedNode = htmlNodes.ToArray()[4];
-                    speedNode = HtmlUtil.GetNodeByAttribute(speedNode, "div", "class", "speedbar response_time");
+                    speedNode = Helper.GetNodeByAttribute(speedNode, "div", "class", "speedbar response_time");
                     speedNode = speedNode.Descendants("div").ToArray()[0];
                     rate = speedNode.Attributes["style"].Value.Replace("width:", "").Replace("%", "");
                     freeProxy.SpeedRate = int.Parse(rate);
@@ -478,7 +479,7 @@ namespace SMEAppHouse.Core.FreeProxyProvider.Providers.HideMyAss
             var doc = new HtmlDocument();
             doc.LoadHtml(hmaPgDoc);
 
-            var tblNode = HtmlUtil.GetNodeByAttribute(doc.DocumentNode, "table", "id", "listtable");
+            var tblNode = Helper.GetNodeByAttribute(doc.DocumentNode, "table", "id", "listtable");
 
             if (tblNode == null) return rowCount;
 

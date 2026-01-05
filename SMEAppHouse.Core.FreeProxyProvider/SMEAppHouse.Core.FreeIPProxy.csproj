@@ -27,6 +27,8 @@
     <Compile Include="Providers\Base\IPProxyCartridgeBase.cs" />
     <Compile Include="Providers\PremProxyComCartridge.cs" />
     <Compile Include="Providers\ProxyHttpNetCartridge.cs" />
+    <Compile Include="Providers\SamairRuCartridge.cs" />
+    <Compile Include="Providers\USProxyCartridge.cs" />
   </ItemGroup>
 
   <ItemGroup>

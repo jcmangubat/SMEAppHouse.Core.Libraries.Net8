@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SMEAppHouse.Core.CodeKits\SMEAppHouse.Core.CodeKits.csproj" />
+    <ProjectReference Include="..\SMEAppHouse.Core.ProcessService\SMEAppHouse.Core.ProcessService.csproj" />
   </ItemGroup>
 
 </Project>

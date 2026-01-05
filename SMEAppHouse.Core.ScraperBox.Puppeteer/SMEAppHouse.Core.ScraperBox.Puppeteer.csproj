@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Description>Library for handling Puppeteer functionalities.</Description>
+  </PropertyGroup>
+
+  <Import Project="..\.shared\common-assembly-info.proj" />
+
+  <ItemGroup>
+    <Compile Remove="Base\ContentGrabberPuppeteerX.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="PuppeteerSharp" Version="1.19.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SMEAppHouse.Core.CodeKits\SMEAppHouse.Core.CodeKits.csproj" />
+    <ProjectReference Include="..\SMEAppHouse.Core.ScraperBox\SMEAppHouse.Core.ScraperBox.csproj" />
+  </ItemGroup>
+
+</Project>

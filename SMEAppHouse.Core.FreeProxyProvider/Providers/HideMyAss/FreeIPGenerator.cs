@@ -6,7 +6,8 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
-using GPS.Frameworks.HtmlHelper;
+using SMEAppHouse.Core.ScraperBox;
+using SMEAppHouse.Core.ScraperBox.Models;
 
 namespace SMEAppHouse.Core.FreeProxyProvider
 {
@@ -81,7 +82,7 @@ namespace SMEAppHouse.Core.FreeProxyProvider
 
                             try
                             {
-                                _hmaPgDoc = HtmlUtil.GetPageDocument(__hmaProxListUrl, UserAgents.GetFakeUserAgent(UserAgents.UserAgent.Chrome));
+                                _hmaPgDoc = Helper.GetPageDocument(__hmaProxListUrl, UserAgents.GetFakeUserAgent(UserAgents.Chrome41022280));
                                 _hmaPgDoc = _hmaPgDoc.Replace(System.Environment.NewLine, "");
 
                                 int _start = _hmaPgDoc.IndexOf("<table id=\"listtable\"");
@@ -292,7 +293,7 @@ namespace SMEAppHouse.Core.FreeProxyProvider
                     freeProxy.Country = (ProxyCountry)Enum.Parse(typeof(ProxyCountry), _country);
 
                     var _connspeedNode = _prxCells.ToArray()[5];
-                    _connspeedNode = HtmlUtil.GetNode(_connspeedNode, "div", "class", "speedbar connection_time");
+                    _connspeedNode = Helper.GetNodeByAttribute(_connspeedNode, "div", "class", "speedbar connection_time");
                     _connspeedNode = _connspeedNode.Descendants("div").ToArray()[0];
                     string _rate = _connspeedNode.Attributes["style"].Value.Replace("width:", "").Replace("%", "");
                     freeProxy.ConnectionTimeRate = int.Parse(_rate);
@@ -305,7 +306,7 @@ namespace SMEAppHouse.Core.FreeProxyProvider
                         freeProxy.ConnectionTime = ProxyConnectionSpeedEnum.Medium;
 
                     var _speedNode = _prxCells.ToArray()[4];
-                    _speedNode = HtmlUtil.GetNode(_speedNode, "div", "class", "speedbar response_time");
+                    _speedNode = Helper.GetNodeByAttribute(_speedNode, "div", "class", "speedbar response_time");
                     _speedNode = _speedNode.Descendants("div").ToArray()[0];
                     _rate = _speedNode.Attributes["style"].Value.Replace("width:", "").Replace("%", "");
                     freeProxy.SpeedRate = int.Parse(_rate);
@@ -344,7 +345,7 @@ namespace SMEAppHouse.Core.FreeProxyProvider
             HtmlAgilityPack.HtmlDocument _doc = new HtmlAgilityPack.HtmlDocument();
             _doc.LoadHtml(hmaPgDoc);
 
-            var _tblNode = HtmlUtil.GetNode(_doc.DocumentNode, "table", "id", "listtable");
+            var _tblNode = Helper.GetNodeByAttribute(_doc.DocumentNode, "table", "id", "listtable");
             if(_tblNode != null)
             {
                 var _tRowNodes = _tblNode.Descendants("tr");

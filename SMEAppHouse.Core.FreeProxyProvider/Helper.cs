@@ -259,6 +259,27 @@ namespace SMEAppHouse.Core.FreeIPProxy
             return isSuccess;
         }
 
+        /// <summary>
+        /// Test if proxy is working using WebClient (synchronous, simpler validation)
+        /// </summary>
+        /// <param name="host"></param>
+        /// <param name="port"></param>
+        /// <returns></returns>
+        public static bool ProxyIsGood(string host, int port)
+        {
+            try
+            {
+                var wc = new WebClient { Proxy = new WebProxy(host, port) };
+                wc.DownloadString("http://google.com/ncr");
+                return true;
+            }
+            catch
+            {
+                // ignored
+            }
+            return false;
+        }
+
         public static bool TestIPProxy2(IPProxy proxy)
         {
             try
