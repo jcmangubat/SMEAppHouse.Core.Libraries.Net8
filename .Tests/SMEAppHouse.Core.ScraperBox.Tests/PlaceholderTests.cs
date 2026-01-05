@@ -1,15 +1,5 @@
-using FluentAssertions;
-using Xunit;
-
-namespace SMEAppHouse.Core.ScraperBox.Tests;
-
-public class PlaceholderTests
-{
-    [Fact]
-    public void Placeholder_ShouldPass()
-    {
-        // Arrange & Act & Assert
-        Assert.True(true);
-    }
-}
+// This file has been replaced with comprehensive test files:
+// - HelperTests.cs - Tests for Helper static methods
+// - ModelsTests.cs - Tests for IPProxy, CrawlerOptions, CrawlerResult, PageInstruction
+// - PageInstructionExtensionTests.cs - Tests for PageInstruction extension methods
 

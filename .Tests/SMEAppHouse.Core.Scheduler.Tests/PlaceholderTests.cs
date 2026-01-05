@@ -1,15 +1,4 @@
-using FluentAssertions;
-using Xunit;
-
-namespace SMEAppHouse.Core.Scheduler.Tests;
-
-public class PlaceholderTests
-{
-    [Fact]
-    public void Placeholder_ShouldPass()
-    {
-        // Arrange & Act & Assert
-        Assert.True(true);
-    }
-}
+// This file has been replaced with comprehensive test files:
+// - ScheduleTests.cs - Tests for Schedule class
+// - HelpersTests.cs - Tests for Helpers static methods
 
